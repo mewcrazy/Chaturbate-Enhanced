@@ -2,15 +2,13 @@
 <p align="center">A browser extension to extend Chaturbate with new useful features like On-The-Fly Translations of your sent and received chat messages, Do Not Disturb Mode, Message Templates, Improved Filtering for Followed Cams, and many more features.</p>
 
 <p align="center" width="100%">
-  <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/archive/refs/heads/main.zip"><img src="https://shields.io/github/downloads/mewcrazy/Chaturbate-Enhanced/total"></a>
+  <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest"><img src="https://shields.io/github/downloads/mewcrazy/Chaturbate-Enhanced/total"></a>
 </p>
 
 <p align="center" width="100%">
     <a href="https://chaturbate.com/in/?tour=g4pe&campaign=HjEmw&track=default" target="_blank"><img width="830" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/github-intro-animation.gif"></a>
 </p>
 
-> [!WARNING]
-> Chaturbate Enhanced is currently in active development and is not ready to use yet. The translation feature is ready and working, the rest is not finished yet.
 
 ## Features:
 - Translate chat messages & direct messages on-the-fly in over different 100 languages with 1-click
