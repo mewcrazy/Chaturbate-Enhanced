@@ -52,8 +52,8 @@
             ],
             "css": [],
             "matches": [
-                "*://chaturbate.com/p/*/?tab=settings",
-                "*://*.chaturbate.com/p/*/?tab=settings"
+                "*://chaturbate.com/p/*/?tab=*",
+                "*://*.chaturbate.com/p/*/?tab=*"
             ]
         }
     ],

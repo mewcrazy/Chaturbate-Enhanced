@@ -168,6 +168,7 @@ function addMessageTemplates(el) {
       $('.msg-list-wrapper-split').append('<div class="se-message-templates"><div class="title-block"><h3>Templates</h3><span class="se-add-message add-icon-wrapper"><svg class="icon icon-add"><use xlink:href="#icons-add"></use></svg></span><div class="add hidden"><input type="text" value="" placeholder="Your Text"></div><div class="search"><input class="inline-block input text-default theme-default se-msg-tpl-search" name="s" type="search" value="" placeholder="Search message templates ..."></div><button type="button" class="se-close-message-tpl SmilesWidgetContainer__closeBtn#GV" title="Close Languages"><svg style="height:20px;width:20px" class="IconV2__icon#YR" viewBox="0 0 24 24"><path fill="currentColor" d="M20.027 3.985a1.27 1.27 0 0 0-1.796 0L12 10.203l-6.23-6.23a1.27 1.27 0 0 0-1.797 0 1.27 1.27 0 0 0 0 1.796L10.203 12l-6.23 6.23a1.27 1.27 0 0 0 0 1.797c.497.497 1.3.497 1.796 0L12 13.797l6.23 6.23c.498.497 1.3.497 1.797 0s.497-1.3 0-1.796L13.797 12l6.23-6.23c.485-.485.485-1.3 0-1.785"/></svg></button></div><ul class="se-messages-tpl-list"></ul><span class="empty hidden">You haven\'t added any messages yet</span><span class="no-results hidden">No messages found.</span></div>')
 
       // fetch & insert templates
+      localStorage.setItem()
       let templates = [
         "Want to talk in their language? Try the Chaturbate Enhanced browser extension. See my bio.",
         "Lorem ipsum dolor amet Lorem ipsum dolor amet Lorem ipsum dolor amet2.",
@@ -185,7 +186,11 @@ function addMessageTemplates(el) {
 
       // click message
       $('.se-add-message').off().on('click', function(e) {
-        $(this).next('.add').removeClass("hidden")
+
+        // html options overlay
+        $('body').append('<div class="blurred-login-overlay se-blurred-login-overlay hidden" style="position: fixed; display: block; inset: 0px; z-index: 1100; visibility: visible;"></div><div class="message-templates-add-modal hidden"></div>')
+        $('.message-templates-add-modal').load(htmlEnhancedOptions);
+        
       })
 
       // click message
@@ -228,26 +233,26 @@ function hideChatUsers(el) {
   // observe messages div
   var observer = new MutationObserver(function(e) {
 
-      // add translation button to regular messages
-      $(el).find('[data-testid="chat-message"]:not(.se-processed)').slice(-50).each(function(index, item) {
-        if(!$(this).find('.translate-line').length) {
-          $(this).find('.msg-text').append(htmlTranslateButton)
-          $(this).addClass("se-processed")
-        }
-      })
-
       // DND Mode (filter everything else)
       if(localStorage.getItem('SE_dndMode') === "1") {
         $(el).find('[data-testid="chat-message"]').slice(-50).each(function(index, item) {
           if(
             $(this).find('[data-testid="username"]').text() != username && $(this).find('[data-testid="username"]').text() != usernameModel
-            && !$(this).find('.roomNotice.isTip,.roomNotice.titleChange,.roomNotice.bright-background').length
+            && !$(this).find('.roomNotice.isTip,.roomNotice.titleChange,.roomNotice.bright-background').length || $(this).text().includes("Lovense")
           )
             $(this).addClass("se-hidden")
         })
       } else {
         $(el).find('[data-testid="chat-message"].se-hidden').removeClass('se-hidden')
       }
+
+      // add translation button to regular messages
+      $(el).find('[data-testid="chat-message"]:not(.se-processed):not(.se-hidden)').slice(-50).each(function(index, item) {
+        if(!$(this).find('.translate-line').length) {
+          $(this).find('.msg-text').append(htmlTranslateButton)
+          $(this).addClass("se-processed")
+        }
+      })
 
       // auto translate
       if($('.switch-auto-translate input[type="checkbox"]').is(':checked')) {
@@ -798,6 +803,36 @@ function addOverlayButtons(jNode) {
 
 
 /**
+ * Hide Follow Recommendations
+ */
+waitForKeyElements(".followRecommendations.roomlist_container", hideFollowRecommendations, false);
+function hideFollowRecommendations(el) {
+  let htmlCloseFollowRecommendation = '<button type="button" class="se-follow-recommendations-close" title="Hide Follow Recommendations"><svg style="height: 20px; width: 20px;" class="IconV2__icon#YR" viewBox="0 0 24 24"><path fill="currentColor" d="M20.0273 3.98544C19.5303 3.48852 18.7276 3.48852 18.2307 3.98544L12 10.2034L5.76926 3.9727C5.27233 3.47577 4.4696 3.47577 3.97267 3.9727C3.47574 4.46963 3.47574 5.27236 3.97267 5.76929L10.2034 12L3.97267 18.2307C3.47574 18.7276 3.47574 19.5304 3.97267 20.0273C4.4696 20.5242 5.27233 20.5242 5.76926 20.0273L12 13.7966L18.2307 20.0273C18.7276 20.5242 19.5303 20.5242 20.0273 20.0273C20.5242 19.5304 20.5242 18.7276 20.0273 18.2307L13.7966 12L20.0273 5.76929C20.5115 5.2851 20.5115 4.46963 20.0273 3.98544Z"></path></svg></button>'
+  let htmlOpenFollowRecommendation = '<div class="roomlist_container"><button type="button" class="se-follow-recommendations-open" title="Show Follow Recommendations">Show Follow Recommendations</button></div>'
+
+  // append close button
+  $(el).prepend(htmlCloseFollowRecommendation)
+
+  // hide preset
+  if(localStorage.getItem('SE_hideFollowRecommendations'))
+    $(el).addClass('se-hidden').before(htmlOpenFollowRecommendation)
+
+  // close button event
+  $('.se-follow-recommendations-close').on('click', function(e) {
+    localStorage.setItem('SE_hideFollowRecommendations', 1)
+    $(el).addClass('se-hidden').before(htmlOpenFollowRecommendation)
+  })
+
+  // open button event
+  $('#roomlist_root').on('click', '.se-follow-recommendations-open', function(e) {
+    localStorage.removeItem('SE_hideFollowRecommendations', 0)
+    $(this).parent().remove()
+    $('.followRecommendations.roomlist_container').removeClass('se-hidden')
+  })
+}
+
+
+/**
  * Favorites Filtering
  */
 waitForKeyElements(".followed_online_offline", addFavoritesFilters, false);
@@ -943,11 +978,11 @@ waitForKeyElements('#main.chat_room', addBodyShit);
 function addBodyShit(el) {
 
   $(el).on('click', '.se-switcher', function(e) {
-    localStorage.setItem($(this).find('input').attr('name'), $(this).find('input').val())
     $(this).toggleClass("on")
     $(this).find('input').prop('checked', function (i, val) {
       return !val;
     }).trigger('change');
+    localStorage.setItem($(this).find('input').attr('name'), ($(this).find('input').is(':checked') ? $(this).find('input').val() : "0"))
   })
 }
 
@@ -959,7 +994,8 @@ function translateGoogle(val, lang, errordiv) {
     // error handling
     if(errordiv && data.error.code) {
       console.log("[StripChat Enhanced] Translation Error: "+data.error.message)
-      $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error. <em>Please check the browser\'s console (F12) for more information.</small></span></span></div></div></div>')
+      $('.model-chat-error').remove()
+      $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <em>'+data.error.message+'</em></span></span></div></div></div>')
 
       // close error
       $('.model-chat-error').on('click', function() { $(this).remove() })

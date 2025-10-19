@@ -170,6 +170,12 @@ button + .se-loader { display: none; }
 .se-additional-notifications .se-title>* { margin: 0; padding: 5px 10px; font-size: 15px; font-weight: 400; }
 .se-additional-notifications .se-content { padding: 10px; }
 
+/* Hide Follow Recommendations */
+.followRecommendations.roomlist_container { position: relative; }
+.se-follow-recommendations-close { position: absolute; top: 10px; right: 10px; border: 0; outline: 0; background: none; color: rgba(255,255,255,.5); cursor: pointer; }
+.se-follow-recommendations-open { background-color: #202c39; border: 0; outline: 0; border-radius: 3px; padding: 3px 7px; color: rgba(255,255,255,.5); cursor: pointer; }
+.se-follow-recommendations-close:hover, .se-follow-recommendations-open:hover { color: #fff  }
+
 /* keyframes */
 @keyframes rotate {
   0% { transform:rotate(0deg) }
