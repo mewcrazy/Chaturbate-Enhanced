@@ -74,10 +74,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
         run: |
-          gh release create "Chaturbate Enhanced $tag" \
+          gh release create "$tag" \
               "extensions/chrome.crx#chrome_extension_$tag.crx" \
               "extensions/firefox.zip#firefox_extension_$tag.zip" \
               "extensions/opera.crx#opera_extension_$tag.crx" \
               --repo="$GITHUB_REPOSITORY" \
-              --title="${tag#v}" \
+              --title="Chaturbate Enhanced ${tag#v}" \
               --generate-notes
