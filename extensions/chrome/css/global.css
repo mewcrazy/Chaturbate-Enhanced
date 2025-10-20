@@ -144,9 +144,7 @@ button + .se-loader { display: none; }
 .se-close-message-tpl { pointer-events: auto; cursor: pointer; background: 0; color: rgba(255,255,255,.6); border: 0; outline: 0; justify-self: flex-end; }
 .se-message-tpl {  margin-top: 7px;  }
 .se-message-tpl:first-of-type { margin-top: 0; }
-.se-message-tpl span { display: -webkit-box;
--webkit-line-clamp: 2;
--webkit-box-orient: vertical; text-overflow: ellipsis; height: 45px; padding: 10px; border-radius: 6px; background: #2a323f; border: 1px solid #2d3e50; padding: 3px; line-height: 1.5em; font-size: 13px; letter-spacing: 0.03em; font-style: italic; cursor: pointer; }
+.se-message-tpl span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-overflow: ellipsis; height: 45px; padding: 10px; border-radius: 6px; background: #2a323f; border: 1px solid #2d3e50; padding: 3px; line-height: 1.5em; font-size: 13px; letter-spacing: 0.03em; font-style: italic; cursor: pointer; }
 .se-message-tpl span:hover { background: #2d3e50; }
 .se-add-message { cursor: pointer; }
 .se-add-message .icon-add { width: 30px; height: 30px; fill: #b3b3b3; }
@@ -171,10 +169,14 @@ button + .se-loader { display: none; }
 .se-additional-notifications .se-content { padding: 10px; }
 
 /* Hide Follow Recommendations */
-.followRecommendations.roomlist_container { position: relative; }
+.followRecommendedContainer .followRoomTable, .followRecommendations.roomlist_container { position: relative; }
 .se-follow-recommendations-close { position: absolute; top: 10px; right: 10px; border: 0; outline: 0; background: none; color: rgba(255,255,255,.5); cursor: pointer; }
 .se-follow-recommendations-open { background-color: #202c39; border: 0; outline: 0; border-radius: 3px; padding: 3px 7px; color: rgba(255,255,255,.5); cursor: pointer; }
 .se-follow-recommendations-close:hover, .se-follow-recommendations-open:hover { color: #fff  }
+.followRoomTable .se-follow-recommendations-close { top: -20px; right: 5px; }
+.followRecommendedHeader + div + .followRoomTable { overflow: visible; }
+.followRecommendedContainer .se-follow-recommendations-open { margin: 13px 3px 3px 3px; }
+.followRoomTable .se-follow-recommendations-close svg { width: 15px !important; height: 15px !important; }
 
 /* keyframes */
 @keyframes rotate {

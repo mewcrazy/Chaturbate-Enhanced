@@ -803,13 +803,45 @@ function addOverlayButtons(jNode) {
 
 
 /**
- * Hide Follow Recommendations
+ * Hide Follow Recommendations (Follow Popup)
+ */
+var htmlCloseFollowRecommendation = '<button type="button" class="se-follow-recommendations-close" title="Hide Follow Recommendations"><svg style="height: 20px; width: 20px;" class="IconV2__icon#YR" viewBox="0 0 24 24"><path fill="currentColor" d="M20.0273 3.98544C19.5303 3.48852 18.7276 3.48852 18.2307 3.98544L12 10.2034L5.76926 3.9727C5.27233 3.47577 4.4696 3.47577 3.97267 3.9727C3.47574 4.46963 3.47574 5.27236 3.97267 5.76929L10.2034 12L3.97267 18.2307C3.47574 18.7276 3.47574 19.5304 3.97267 20.0273C4.4696 20.5242 5.27233 20.5242 5.76926 20.0273L12 13.7966L18.2307 20.0273C18.7276 20.5242 19.5303 20.5242 20.0273 20.0273C20.5242 19.5304 20.5242 18.7276 20.0273 18.2307L13.7966 12L20.0273 5.76929C20.5115 5.2851 20.5115 4.46963 20.0273 3.98544Z"></path></svg></button>'
+var htmlOpenFollowRecommendation = '<div class="roomlist_container"><button type="button" class="se-follow-recommendations-open" title="Show Follow Recommendations">Show Follow Recommendations</button></div>'
+waitForKeyElements(".followRecommendedHeader + div + .followRoomTable", hidePopupFollowRecommendations, false);
+function hidePopupFollowRecommendations(el) {
+  
+  // append close button
+  $(el).prepend(htmlCloseFollowRecommendation)
+
+  // hide preset
+  if(localStorage.getItem('SE_hidePopupFollowRecommendations')) {
+    $(el).addClass('se-hidden').before(htmlOpenFollowRecommendation)
+    $(el).siblings('.followRecommendedHeader').addClass('se-hidden')
+  }
+
+  // close button event
+  $('.followRoomTable').on('click', '.se-follow-recommendations-close', function(e) {
+    e.preventDefault
+    e.stopPropagation
+    e.stopImmediatePropagation
+    localStorage.setItem('SE_hidePopupFollowRecommendations', 1)
+    $(el).addClass('se-hidden').before(htmlOpenFollowRecommendation)
+  })
+
+  // open button event
+  $('.followRecommendedContainer').on('click', '.se-follow-recommendations-open', function(e) {
+    localStorage.removeItem('SE_hidePopupFollowRecommendations', 0)
+    $(el).removeClass('se-hidden').siblings('.followRecommendedHeader').removeClass('se-hidden')
+    $(this).parent().remove()
+  })
+}
+
+/**
+ * Hide Follow Recommendations (Content)
  */
 waitForKeyElements(".followRecommendations.roomlist_container", hideFollowRecommendations, false);
 function hideFollowRecommendations(el) {
-  let htmlCloseFollowRecommendation = '<button type="button" class="se-follow-recommendations-close" title="Hide Follow Recommendations"><svg style="height: 20px; width: 20px;" class="IconV2__icon#YR" viewBox="0 0 24 24"><path fill="currentColor" d="M20.0273 3.98544C19.5303 3.48852 18.7276 3.48852 18.2307 3.98544L12 10.2034L5.76926 3.9727C5.27233 3.47577 4.4696 3.47577 3.97267 3.9727C3.47574 4.46963 3.47574 5.27236 3.97267 5.76929L10.2034 12L3.97267 18.2307C3.47574 18.7276 3.47574 19.5304 3.97267 20.0273C4.4696 20.5242 5.27233 20.5242 5.76926 20.0273L12 13.7966L18.2307 20.0273C18.7276 20.5242 19.5303 20.5242 20.0273 20.0273C20.5242 19.5304 20.5242 18.7276 20.0273 18.2307L13.7966 12L20.0273 5.76929C20.5115 5.2851 20.5115 4.46963 20.0273 3.98544Z"></path></svg></button>'
-  let htmlOpenFollowRecommendation = '<div class="roomlist_container"><button type="button" class="se-follow-recommendations-open" title="Show Follow Recommendations">Show Follow Recommendations</button></div>'
-
+  
   // append close button
   $(el).prepend(htmlCloseFollowRecommendation)
 

@@ -25,9 +25,9 @@
 Simply install the extension for your preferred browser:
 
 <p width="100%">
-    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/refs/heads/main/extensions/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-chrome.png"></a>
-    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/refs/heads/main/extensions/firefox.zip"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-firefox.png"></a>
-    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/refs/heads/main/extensions/opera.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-opera.png"></a>
+    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-chrome.png"></a>
+    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-firefox.png"></a>
+    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-opera.png"></a>
 </p>
 
 Please note that this script requires an API Key for the Google Cloud Translation API. Simply log in your Google account, and create a New Project for the Cloud Translation API. After you can click on "Login Credentials" and create a new API Key which you can paste into the Extension.
@@ -181,6 +181,7 @@ Thanks to [PotPlayer](https://potplayer.info) for the innovative idea of opening
 Thanks to [Wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Language_flags_list) for the curated list of language flags.
 Thanks to [Chaturbate Enhancer](https://cb-enh.improper.dev/) for giving us some final inspirational changes.
 
----
-
-<p align="center">Inspired by <a href="https://chaturbate.com/in/?tour=g4pe&campaign=HjEmw&track=default" target="_blank">Chaturbate</a> and made with <span title="aalliyahh">❤️</span> in Düsseldorf, Germany</p>
+<p>
+  <span align="left">Inspired by <a href="https://chaturbate.com/in/?tour=g4pe&campaign=HjEmw&track=default" target="_blank">Chaturbate</a> and made with ❤️ in Düsseldorf, Germany.</span>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=UEUQP2P24Y98S" target="_blank" align="right"><img align="right" width="206" src="https://raw.githubusercontent.com/mewcrazy/Chaturbate-Enhanced/refs/heads/0.5.0/img/donate-button.png"></a>
+</p>
