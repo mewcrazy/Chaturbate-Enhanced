@@ -168,14 +168,15 @@ function addMessageTemplates(el) {
       $('.msg-list-wrapper-split').append('<div class="se-message-templates"><div class="title-block"><h3>Templates</h3><span class="se-add-message add-icon-wrapper"><svg class="icon icon-add"><use xlink:href="#icons-add"></use></svg></span><div class="add hidden"><input type="text" value="" placeholder="Your Text"></div><div class="search"><input class="inline-block input text-default theme-default se-msg-tpl-search" name="s" type="search" value="" placeholder="Search message templates ..."></div><button type="button" class="se-close-message-tpl SmilesWidgetContainer__closeBtn#GV" title="Close Languages"><svg style="height:20px;width:20px" class="IconV2__icon#YR" viewBox="0 0 24 24"><path fill="currentColor" d="M20.027 3.985a1.27 1.27 0 0 0-1.796 0L12 10.203l-6.23-6.23a1.27 1.27 0 0 0-1.797 0 1.27 1.27 0 0 0 0 1.796L10.203 12l-6.23 6.23a1.27 1.27 0 0 0 0 1.797c.497.497 1.3.497 1.796 0L12 13.797l6.23 6.23c.498.497 1.3.497 1.797 0s.497-1.3 0-1.796L13.797 12l6.23-6.23c.485-.485.485-1.3 0-1.785"/></svg></button></div><ul class="se-messages-tpl-list"></ul><span class="empty hidden">You haven\'t added any messages yet</span><span class="no-results hidden">No messages found.</span></div>')
 
       // fetch & insert templates
-      localStorage.setItem()
-      let templates = [
+      localStorage.setItem('SE_messageTemplates', JSON.stringify([
         "Want to talk in their language? Try the Chaturbate Enhanced browser extension. See my bio.",
         "Lorem ipsum dolor amet Lorem ipsum dolor amet Lorem ipsum dolor amet2.",
         "Lorem ipsum dolor amet Lorem ipsum dolor amet Lorem ipsum dolor amet3.",
         "Lorem ipsum dolor amet Lorem ipsum dolor amet Lorem ipsum dolor amet4."
-      ]
+      ]))
+      let templates = localStorage.getItem('SE_messageTemplates')
       if(templates) {
+        templates = JSON.parse(templates)
         $.each(templates, (k, v) => {
           $('.se-messages-tpl-list').append('<li class="se-message-tpl"><span>'+v+'</span></li>')
         })
@@ -290,6 +291,42 @@ function hideChatUsers(el) {
         $(this).prop('disabled', false)
       })
   })
+}
+
+
+/**
+ * Disable Chat Notices
+ */
+waitForKeyElements('#TheaterModeRoomContents #ChatTabContainer', addDisableChat, false);
+function addDisableChat(el) {
+  let username = $('.header-sub-item-wrapper .viewcam-profile-menu-item__label').eq(0).text().toLowerCase()
+
+  // get global variable
+  let roomDossier = Array.from($('body').html().matchAll(/initialRoomDossier = "(.*?)"/g), m => m[1])
+  roomDossier =  roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
+
+  // add input box notices
+  if(roomDossier) {
+    roomDossier = JSON.parse(roomDossier)
+    console.log(roomDossier)
+    if(roomDossier.room_status === "hidden" ) {
+      $(el).find('.inputDiv').addClass('se-disabled').find('.chat-input-form').prepend('<div class="is-in-ticket">You can\'t chat while the model is in a Hidden Show.</div>')
+    }
+    else if(roomDossier.room_status === "private" || roomDossier.premium_show_running) {
+      $(el).find('.inputDiv').addClass('se-disabled').find('.chat-input-form').prepend('<div class="is-in-p2p">You can\'t chat while the model is in a Private Show.</div>')
+    }
+    else if(roomDossier.room_status === "group") {
+      $(el).find('.inputDiv').addClass('se-disabled').find('.chat-input-form').after('<div class="is-in-group">You can\'t chat while the model is in a Group Show.</div>')
+    }
+    //else if(roomDossier.room_status !== "public") {
+    //    $(el).find('.inputDiv').addClass('se-disabled').find('.se-langpicker').after('<div class="is-in-group">You can\'t chat while the model is in a Group Show.</div>')
+    //}
+  }
+}
+waitForKeyElements('.vjs-video-start', addEnableChat, false);
+function addEnableChat() {
+  $('.model-chat-input').removeClass('se-disabled')
+  $('[class*="is-in"]').remove()
 }
 
 
@@ -425,8 +462,8 @@ function addLangDropdownPrivateChats(el) {
  */
 waitForKeyElements('.vjs-has-started', showTakeScreenshotButton);
 function showTakeScreenshotButton(el) {
-  $('.se-take-screenshot').removeClass('hidden') // "Take Screenshot" Button
-  $('.se-pip').removeClass('hidden') // "Picture in Picture" Button
+  $('.se-take-screenshot').removeClass('se-disabled') // "Take Screenshot" Button
+  $('.se-pip').removeClass('se-disabled') // "Picture in Picture" Button
 }
 
 
@@ -435,7 +472,7 @@ function showTakeScreenshotButton(el) {
  */
 waitForKeyElements('#satisfactionScore', addTakeScreenshot);
 function addTakeScreenshot(el) {
-  $(el).after('<div ts="N" class="se-take-screenshot sendTipButton hidden" data-testid="follow-button" style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;"><span></span><span>SCREENSHOT</span></div>');
+  $(el).after('<div ts="N" class="se-take-screenshot sendTipButton se-disabled" data-testid="take-screenshot-button" style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;"><span></span><span>SCREENSHOT</span></div>');
 
   $('.se-take-screenshot').on('click', function(e) {
     e.preventDefault();
@@ -459,6 +496,13 @@ function addTakeScreenshot(el) {
     return fname + '__' + d + '_' + t + ext;
   }
 }
+
+
+/**
+ * Privacy
+ */
+localStorage.setItem('followedDropdownClicked', '')
+
 
 /**
  * Remove Ads & Accept Terms
@@ -598,7 +642,7 @@ function addLangDropdown(jNode) {
     }
 
     // create own input
-    $(jNode).find('.chat-input-field').addClass('hidden')
+    $(jNode).find('.chat-input-field').addClass('se-hidden')
     $(jNode).append('<input class="se-custom-input customInput chat-input-field" type="text" value="" style="background: none; color: #b3b3b3; height: 16px; width: 100%; position: relative; overflow: scroll hidden; -webkit-tap-highlight-color: transparent; outline: none; border: none; box-sizing: border-box; font-size: 12px; white-space: nowrap; user-select: text; font-family: Helvetica, Arial, sans-serif; line-height: 15px;">')
 
     // add own keypress event
@@ -708,7 +752,7 @@ function addLangDropdown(jNode) {
           elem.data('search',  value)
           .clearQueue().stop()
           .queue(function() {
-            $(".language-list > button").removeClass('hidden').filter(function() {
+            $(".language-list button").removeClass('hidden').filter(function() {
                 return $(this).attr("data-search").toLowerCase().indexOf(value) === -1;
             }).addClass('hidden');
             if (elem.data('search') !=  value) return;
@@ -724,11 +768,12 @@ function addLangDropdown(jNode) {
         $(".language-list button").show()
       }
     });
+}
+waitForKeyElements(".emojiSelectionModal", modifyEmojiPicker, false);
+function modifyEmojiPicker(el) {
 
-    // fix: Emoji Insert 
-    $('body').on('click', '.emojiDiv', function(e) {
-      alert("test")
-    })
+  // sync emoji insert with custom input
+  $(el).on('click', '.emojiDiv', function(e) { $('.se-custom-input').delay(100).val($('.se-custom-input').val() + $(this).find('img').eq(0).attr('alt')).trigger('blur') })
 }
 
 
@@ -1024,10 +1069,10 @@ function translateGoogle(val, lang, errordiv) {
     data = $.parseJSON(data.responseText)
 
     // error handling
+    $('.model-chat-error').remove()
     if(errordiv && data.error.code) {
-      console.log("[StripChat Enhanced] Translation Error: "+data.error.message)
       $('.model-chat-error').remove()
-      $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <em>'+data.error.message+'</em></span></span></div></div></div>')
+      $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <small><em>'+data.error.message+'</em></small></span></span></div></div></div>')
 
       // close error
       $('.model-chat-error').on('click', function() { $(this).remove() })
@@ -1046,10 +1091,12 @@ function decodeHtml(html) {
 
 // populate languages to dropdowns and language lists
 function populateLanguageDropdowns() {
-  if($('.language-list').empty())
+  if($('.language-list:not(.recent)').empty())
     $.each(iso639_langs, function(key, val) {
-      if(val.active === 1 && !$('.language-list.flag-'+val.name).length) {
-        $('.language-list').prepend('<button aria-label="'+val.name+'" class="flag flag-'+val.name+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
+      if(val.active === 1 && !$('.language-list .flag-'+val.name).length) {
+        $('.language-list:not(.recent)').prepend('<button aria-label="'+val.name+'" class="flag flag-'+val.name+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
       }
     })
+
+  let recent = ["de", "dk"]
 }

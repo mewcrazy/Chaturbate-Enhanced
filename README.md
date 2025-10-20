@@ -18,22 +18,22 @@
 - Picture in Picture Mode & Open Fullscreen with middle click as well as double click
 - Hide distracting chat notice messages <sub style="color:rgba(255,255,255,.55)">(Tip Goals, Interactive Toy, Welcome Bot & Fan Club Discount Messages)</sub>
 - Do Not Disturb Mode <sub style="color:rgba(255,255,255,.55)">(Shows only yours and the models chat messages)</sub>
-- Hide the "Auto-Refill" feature to avoid accidental charges <sub style="color:rgba(255,255,255,.55)">(Remove tempting token buy notices)</sub>
+- Hide Chaturbate's new "Auto-Refill" feature to avoid accidental charges <sub style="color:rgba(255,255,255,.55)">(Remove tempting token buy notices)</sub>
 - Keep volume always saved <sub style="color:rgba(255,255,255,.55)">(Fixes muted streams after seeing a starting Ticket or Group Show)</sub>
 
 # Installation
-Simply install the extension for your preferred browser:
+Simply install the Chaturbate Enhanced browser extension for your preferred browser:
 
 <p width="100%">
     <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-chrome.png"></a>
-    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-firefox.png"></a>
-    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/chrome.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-opera.png"></a>
+    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/firefox.zip"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-firefox.png"></a>
+    <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/opera.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-opera.png"></a>
 </p>
 
-Please note that this script requires an API Key for the Google Cloud Translation API. Simply log in your Google account, and create a New Project for the Cloud Translation API. After you can click on "Login Credentials" and create a new API Key which you can paste into the Extension.
+Please note that this extension requires an API Key for the Google Cloud Translation API. Simply log in your Google account, and create a New Project for the Cloud Translation API. After you can click on "Login Credentials" and create a new API Key which you can paste into the Extension.
 
 ## Language list
-Chaturbate Enhanced supports all available languages offered by Google's Cloud Translation API, in total *123 languages*.
+Chaturbate Enhanced supports translation into all available languages offered by Google's Cloud Translation API, in total *123 languages*.
 
 | English Name  | Local Name | ISO-639 Code  |
 | ------------- | ------------- | ------------- |
