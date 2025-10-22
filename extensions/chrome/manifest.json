@@ -62,6 +62,7 @@
             "resources": [
                 "html/*.html",
                 "json/*.json",
+                "mp3/*.mp3",
                 "json/native.json"
             ],
             "matches": [ "<all_urls>" ],
