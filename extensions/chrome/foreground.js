@@ -17,7 +17,6 @@ var htmlLangPicker = getResource("html/language-picker.html")
 var htmlTranslateButton = '<span class="translate-line"><button class="a11y-button TranslateButton#ZN TranslateButton_outline#qg chat-message-translate-button" style="float: none; display: inline-block;" type="button"><svg style="height: 14px; width: 14px;" class="IconV2__icon#YR" viewBox="0 0 16 14"><path fill="currentColor" fill-rule="evenodd" d="M10.28 1.72V3h-1.5a18.53 18.53 0 0 1-2.6 4.52l.05.05c.43.46.86.93 1.3 1.38l-.9.9c-.37-.36-.72-.74-1.07-1.13l-.2-.21c-.9.99-1.9 1.88-3 2.67l-.77-1.02.03-.02a17.36 17.36 0 0 0 2.87-2.58c-.52-.6-1.03-1.19-1.52-1.8L2.1 4.68l1-.8.86 1.08c.44.54.9 1.07 1.36 1.6C6.15 5.46 6.84 4.27 7.4 3H.68V1.72h4.48V.44h1.28v1.28h3.84Zm5.04 11.84h-1.38L13 11.32H9.48l-.93 2.24H7.17l3.32-8H12l3.33 8ZM11.24 7.1l-1.22 2.94h2.45L11.24 7.1Z" clip-rule="evenodd"></path></svg></button></span>'
 var htmlEnhancedOptions = chrome.runtime.getURL('html/enhanced-options.html')
 
-
 /**
  * Move Bottom Tabs to Top Tab Bar
  */
@@ -219,59 +218,138 @@ function addMessageTemplates(el) {
       })
     }
   })
+}
+
+
+/**
+ * Add Model Info Overlay
+ */
+waitForKeyElements(".roomCard", addModelInfoOverlay, false);
+function addModelInfoOverlay(el) {
+  if(!$(el).hasClass('se-processed')) {
+    $(el).find('.sub-info').append('<li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="#fff"/></svg></li>')
+  }
+  $(el).addClass('se-processed')
+}
+waitForKeyElements(".list.endless_page_template", addModelInfoOverlayFncs, false);
+function addModelInfoOverlayFncs(el) {
+ 
+  $(el).find('.se-open-overlay').on('click', function(e) {
+    
+    // get roomDossier
+    //let roomDossier = getRoomDossier()
+    $(this).append(htmlModelOverlay)
+  })
 
 }
 
 
 /**
+ * Hide Chat Rooms
+ */
+waitForKeyElements(".playerTitleBar .reportAbuseLink", hideChatRooms, false);
+function hideChatRooms(el) {
+
+  setTimeout(() => {
+    if(!$('.se-hide-room').length) {
+      $('.reportAbuseLink').after('<div class="se-hide-room reportAbuseLink"><a class="SeHideRoom reportRoom" data-testid="hide-room-button" data-paction="HideRoom">Hide Room</a></div>')
+    }
+  }, 500);
+
+  $('.se-hide-room').on('click', function(e) {
+
+    if (confirm("Do you really want to block this room? It will be only visible on the Hidden Rooms page after blocking it.") == true) {
+      
+      // append username to localStorage
+      let username = $('.activeRoom').text().toLowercase().split("'")[0]
+      let hiddenRooms = localStorage.getItem("SE_hiddenRooms")
+      if(!hiddenRooms) {
+        hiddenRooms = [username]
+      } else {
+        hiddenRooms = JSON.parse(hiddenRooms)
+        hiddenRooms.push(username);
+      }
+      localStorage.setItem('SE_hiddenRooms', JSON.stringify(hiddenRooms))
+
+      // go to last page
+      window.location.href = "/"
+    }
+  })
+}
+//waitForKeyElements(".roomCard .se-hide-room", hideChatRooms, false);
+//function hideChatRooms(el) {
+//  
+//}
+
+
+
+/**
  * Message Translation
  */
-waitForKeyElements(".message-list", hideChatUsers, false);
-function hideChatUsers(el) {
+waitForKeyElements(".message-list", translateMainChat, false);
+function translateMainChat(el) {
   let username = $('.user_information_header_username').text()
   let usernameModel = $('.activeRoom').text().split('\'')[0].toLowerCase()
 
   // observe messages div
   var observer = new MutationObserver(function(e) {
 
-      // DND Mode (filter everything else)
-      if(localStorage.getItem('SE_dndMode') === "1") {
-        $(el).find('[data-testid="chat-message"]').slice(-50).each(function(index, item) {
-          if(
-            $(this).find('[data-testid="username"]').text() != username && $(this).find('[data-testid="username"]').text() != usernameModel
-            && !$(this).find('.roomNotice.isTip,.roomNotice.titleChange,.roomNotice.bright-background').length || $(this).text().includes("Lovense")
-          )
-            $(this).addClass("se-hidden")
-        })
-      } else {
-        $(el).find('[data-testid="chat-message"].se-hidden').removeClass('se-hidden')
-      }
-
-      // add translation button to regular messages
-      $(el).find('[data-testid="chat-message"]:not(.se-processed):not(.se-hidden)').slice(-50).each(function(index, item) {
-        if(!$(this).find('.translate-line').length) {
-          $(this).find('.msg-text').append(htmlTranslateButton)
-          $(this).addClass("se-processed")
-        }
+    // DND Mode (filter everything else)
+    if(localStorage.getItem('SE_dndMode') === "1") {
+      $(el).find('[data-testid="chat-message"]').slice(-50).each(function(index, item) {
+        if(
+          $(this).find('[data-testid="username"]').text() != username && $(this).find('[data-testid="username"]').text() != usernameModel
+          && !$(this).find('.roomNotice.isTip,.roomNotice.titleChange,.roomNotice.bright-background').length || $(this).text().includes("Lovense")
+        )
+          $(this).addClass("se-hidden")
       })
+    } else {
+      $(el).find('[data-testid="chat-message"].se-hidden').removeClass('se-hidden')
+    }
 
-      // auto translate
-      if($('.switch-auto-translate input[type="checkbox"]').is(':checked')) {
-        $(el).find('[data-testid="chat-message"]:not(.se-hidden):not(.se-translated)').slice(-1).each(function(index, item) {
-          let that = $(this)
-          let ell = $(this).find('.msg-text').clone()
-          ell.find('.defaultUser').remove()
-          let text = ell.text().trim()
-
-          translateGoogle(text, 'en_US', $('.model-chat-content')).then(function(data) {
-            if(!that.find('.msg-text').find('.translated-line').length) {
-              that.find('.msg-text').find('.translate-line').before('<small class="translated-line">'+decodeHtml(data.data.translations[0].translatedText)+'</small>')
-            }
-          })
-
-          $(this).addClass("se-translated")
-        })
+    
+    $(el).find('.roomNotice').slice(-50).each(function(index, item) {
+      if($(this).text().indexOf('The show will start in') !== -1) {
+        alert("1")
+        $('#TheaterModePlayer').next('div').append('<h1>Yoooo the show is starting soon!</h1>')
       }
+      else if($(this).text().indexOf('until the show starts') !== -1) {
+        alert("2")
+        $('#TheaterModePlayer').next('div').append('<h1>Yoooo the show is starting soon!</h1>')
+      }
+      else if($(this).text().indexOf('Ticket Show sales are active') !== -1) {
+        alert("3")
+        $('#TheaterModePlayer').next('div').append('<h1>Yoooo the show is starting soon!</h1>')
+        
+      }
+    })
+
+    // add translation button to regular messages
+    $(el).find('[data-testid="chat-message"]:not(.se-processed):not(.se-hidden)').slice(-50).each(function(index, item) {
+      if(!$(this).find('.translate-line').length) {
+        $(this).find('.msg-text').append(htmlTranslateButton)
+        $(this).addClass("se-processed")
+      }
+    })
+
+    // auto translate
+    if($('.switch-auto-translate input[type="checkbox"]').is(':checked')) {
+      $(el).find('[data-testid="chat-message"]:not(.se-hidden):not(.se-translated)').slice(-1).each(function(index, item) {
+        let that = $(this)
+        let ell = $(this).find('.msg-text').clone()
+        ell.find('.defaultUser').remove()
+        let text = ell.text().trim()
+
+        translateGoogle(text, 'en_US', $('.model-chat-content')).then(function(data) {
+          if(!that.find('.msg-text').find('.translated-line').length) {
+            that.find('.msg-text').find('.translate-line').before('<small class="translated-line">'+decodeHtml(data.data.translations[0].translatedText)+'</small>')
+          }
+        })
+
+        $(this).addClass("se-translated")
+      })
+    }
+
   });
   observer.observe($('.message-list')[0], {characterData: true, childList: true, subtree: true});
 
@@ -302,8 +380,7 @@ function addDisableChat(el) {
   let username = $('.header-sub-item-wrapper .viewcam-profile-menu-item__label').eq(0).text().toLowerCase()
 
   // get global variable
-  let roomDossier = Array.from($('body').html().matchAll(/initialRoomDossier = "(.*?)"/g), m => m[1])
-  roomDossier =  roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
+  let roomDossier = getRoomDossier()
 
   // add input box notices
   if(roomDossier) {
@@ -316,18 +393,30 @@ function addDisableChat(el) {
       $(el).find('.inputDiv').addClass('se-disabled').find('.chat-input-form').prepend('<div class="is-in-p2p">You can\'t chat while the model is in a Private Show.</div>')
     }
     else if(roomDossier.room_status === "group") {
-      $(el).find('.inputDiv').addClass('se-disabled').find('.chat-input-form').after('<div class="is-in-group">You can\'t chat while the model is in a Group Show.</div>')
+      $(el).find('.inputDiv').addClass('se-disabled').find('.chat-input-form').prepend('<div class="is-in-group">You can\'t chat while the model is in a Group Show.</div>')
     }
-    //else if(roomDossier.room_status !== "public") {
-    //    $(el).find('.inputDiv').addClass('se-disabled').find('.se-langpicker').after('<div class="is-in-group">You can\'t chat while the model is in a Group Show.</div>')
-    //}
+    else if(roomDossier.chat_settings.allowed_chat !== "all" && roomDossier.token_balance === 0) {
+      $(el).find('.inputDiv').addClass('se-disabled').find('.se-langpicker').prepend('<div class="is-in-group">You can\'t chat without having tokens.</div>')
+    }
   }
 }
-waitForKeyElements('.vjs-video-start', addEnableChat, false);
+waitForKeyElements('.vjs-playing.vjs-has-started', addEnableChat, false);
 function addEnableChat() {
   $('.model-chat-input').removeClass('se-disabled')
   $('[class*="is-in"]').remove()
 }
+
+
+/**
+ * Offline sucky sucky like alliyah
+ */
+waitForKeyElements(".offlineContentContainer", modifyOfflineCamView, false);
+function modifyOfflineCamView(el) {
+  var htmlOfflineCamView = getResource("html/offline-cam-view.html")
+
+  $(el).find('.offlineRoomNotice').after(htmlOfflineCamView).remove()
+}
+
 
 
 /**
@@ -808,46 +897,6 @@ function addAutoTipButton(el) {
 
 
 /**
- * Model info overlay on listing pages
- */
-waitForKeyElements('.favorites .list-items-container', addOverlayButtons);
-function addOverlayButtons(jNode) {
-
-  $(jNode).find('[class*="ModelThumbUpper"]').append('<div class="se-model-info model-additional-menu-newtab model-additional-menu model-additional-menu--model-list-item model-list-item-additional-menu-wrapper"><div id="model-additional-menu-button-567" class="model-additional-menu__button">+</div></div>')
-
-  // apapend click handler
-  $('.favorites').on('click', '.se-model-info', function(e) {
-    e.preventDefault()
-    $('.model-list-item .overlay').remove()
-    let model = $(this).closest('.model-list-item');
-    let username = model.find('[class*="ModelThumbUsername"]').text();
-    model.addClass("active")
-
-    // get api data
-    $.getJSON('/api/front/v2/models/username/'+username+'/cam').done((data) => {
-      this.data = data
-      let overlayHtml = htmlModelOverlay
-
-      // replace vars
-      const regex = /\[(.*?)\]/g
-      let m;
-      while ((m = regex.exec(htmlModelOverlay)) !== null) {
-        const arrTraverse = m[1].split(".");
-        let res = this.data
-        $.each(arrTraverse, function(i, v) {
-          res = res[v]
-        })
-        overlayHtml = overlayHtml.replace('['+m[1]+']', res)
-      }
-      $(this).append(overlayHtml)
-    });
-
-    return false;
-  })
-}
-
-
-/**
  * Hide Follow Recommendations (Follow Popup)
  */
 var htmlCloseFollowRecommendation = '<button type="button" class="se-follow-recommendations-close" title="Hide Follow Recommendations"><svg style="height: 20px; width: 20px;" class="IconV2__icon#YR" viewBox="0 0 24 24"><path fill="currentColor" d="M20.0273 3.98544C19.5303 3.48852 18.7276 3.48852 18.2307 3.98544L12 10.2034L5.76926 3.9727C5.27233 3.47577 4.4696 3.47577 3.97267 3.9727C3.47574 4.46963 3.47574 5.27236 3.97267 5.76929L10.2034 12L3.97267 18.2307C3.47574 18.7276 3.47574 19.5304 3.97267 20.0273C4.4696 20.5242 5.27233 20.5242 5.76926 20.0273L12 13.7966L18.2307 20.0273C18.7276 20.5242 19.5303 20.5242 20.0273 20.0273C20.5242 19.5304 20.5242 18.7276 20.0273 18.2307L13.7966 12L20.0273 5.76929C20.5115 5.2851 20.5115 4.46963 20.0273 3.98544Z"></path></svg></button>'
@@ -1099,4 +1148,12 @@ function populateLanguageDropdowns() {
     })
 
   let recent = ["de", "dk"]
+}
+
+// get RoomDossier
+function getRoomDossier() {
+  let roomDossier = Array.from($('body').html().matchAll(/initialRoomDossier = "(.*?)"/g), m => m[1])
+  roomDossier =  roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
+
+  return roomDossier
 }
