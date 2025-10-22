@@ -202,6 +202,16 @@ button + .se-loader { display: none; }
 .roomlist_container ul.list, .roomlist_container .roomCard { overflow: visible !important; } /* model overlay */
 .roomlist_container .roomCard .sub-info { overflow: visible; position: relative; } /* model overlay */
 
+/* dm sound */
+.se-dm-sound-toggle { cursor: pointer; z-index: 2; }
+.se-dm-sound-toggle svg, .se-dm-sound-toggle path { fill: rgba(255,255,255,.3) }
+.se-dm-sound-toggle:hover svg { fill: rgba(255,255,255,.75) }
+.se-dm-sound-toggle:hover path { stroke: rgba(255,255,255,.75) }
+.se-dm-sound-toggle.se-sound-off svg { fill: rgba(255,255,255,.1) }
+.se-dm-sound-toggle.se-sound-off path { stroke: rgba(255,255,255,.1) }
+.dmWindowHeader > div:first-child { width: calc(100% - 88px) !important; }
+
+
 /* keyframes */
 @keyframes rotate {
   0% { transform:rotate(0deg) }

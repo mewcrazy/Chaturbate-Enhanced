@@ -648,29 +648,76 @@ function addTransButtonCamGroup(el) {
 
 
 /**
+ * Sound for new DM's
+ */
+waitForKeyElements(".user_information_icon.has_unread", addIconSoundForDMs);
+function addIconSoundForDMs(el) {
+  playNotificationSound()
+}
+waitForKeyElements("#DmWindowBar .dmWindow", addSoundForDMs);
+function addSoundForDMs(el) {
+
+  // add white mode nav item
+  $(el).find('.dmWindowHeader').before('<div class="button se-dm-sound-toggle" data-testid="close" style="position: absolute; height: 20px; width: 20px; border-radius: 5px; top: 5px; right: 60px; display: block;"><svg style="position: relative; height: 16px; width: 16px; left: 5px; top: 4px;" width="16" height="16" viewBox="0 0 0.72 0.72" fill="rgba(255,255,255,.5)"><path d="M0.36 0.165a0.15 0.15 0 0 1 0.15 0.15v0.067a0.06 0.06 0 0 0 0.015 0.04l0.038 0.043c0.026 0.029 0.005 0.075 -0.034 0.075H0.19c-0.039 0 -0.059 -0.046 -0.034 -0.075l0.038 -0.043A0.06 0.06 0 0 0 0.21 0.382V0.315a0.15 0.15 0 0 1 0.15 -0.15m0 0V0.09m-0.27 0.24a0.27 0.27 0 0 1 0.12 -0.225M0.63 0.33a0.27 0.27 0 0 0 -0.12 -0.225M0.33 0.63h0.06" class="sound" stroke="rgba(255,255,255,.5)" stroke-width="0.06" stroke-linecap="round" stroke-linejoin="round"/></svg></div>')
+
+  // start after 2sec (so it doesnt notify about loading messages)
+  setTimeout(() => {
+
+    var observer = new MutationObserver(function(e) {
+      if(!$(el).find('.se-dm-sound-toggle').hasClass('se-sound-off')) { // TODO PARENT ELEMENT
+        playNotificationSound()
+      }
+    });
+    observer.observe($(el).find('.dmWindowHeader').next().find('div:first-child > div:first-child > div:not([data-testid]) > div:first-child')[0], {characterData: false, childList: true, subtree: true});
+  }, 2000);
+
+  /** sound toggle */
+  $('.se-dm-sound-toggle').on('click', function(e) {
+    e.preventDefault()
+    e.stopImmediatePropagation
+    e.stopPropagation
+    $(this).toggleClass("se-sound-off")
+  })
+}
+function playNotificationSound() {
+    let src = chrome.runtime.getURL('mp3/notification.mp3');
+    let audio = new Audio(src);
+    audio.play();
+}
+
+
+/**
  * Picture in Picture
  */
 waitForKeyElements(".theater-overlay", videoAddPip);
 function videoAddPip(el) {
 
   // midclick fullscreen
-  $('#TheaterModePlayer').on('mousedown', 'video,.vjs-tech', function(e) {
-    if(e.which === 2) {
-      e.preventDefault();
+  if(!$('body').hasClass('se-init-fullscreen')) {
+
+    $('#TheaterModeRoomContents').on('mousedown', 'video,.vjs-tech', function(e) {
+      if(e.which === 2) {
+        e.preventDefault();
+        toggleFullscreen(document.getElementsByClassName('vjs-tech')[0])
+      }
+    });
+    $('#TheaterModeRoomContents').on('dblclick', 'video,.vjs-tech', function(e) {
       toggleFullscreen(document.getElementsByClassName('vjs-tech')[0])
-    }
-  });
-  $('#TheaterModePlayer').on('dblclick', 'video,.vjs-tech', function(e) {
-    toggleFullscreen(document.getElementsByClassName('vjs-tech')[0])
-  });
+    });
+    $('body').addClass('se-init-fullscreen')
+  }
 
   // pip
-  $(el).next().append('<div class="se-pip hover-btn drop-shadow-container hidden" aria-label="Theater Mode" data-listener-count-pointerenter="3" data-listener-count-pointerleave="3" ts="_" id="theater-mode-icon" data-listener-count-click="1" style="display: inline-flex; position: relative; align-items: center; justify-content: center; min-width: 32px; user-select: none; pointer-events: auto;"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pip"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5zM1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" fill="#fff"/><path d="M8 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5z" fill="#fff"/></svg><div class="no-drop-shadow video-controls-tooltip" ts="N" style="position: absolute; display: block; opacity: 0; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); border-radius: 4px; background-color: rgba(0, 0, 0, 0.92); padding: 8px 16px; text-align: center; font-size: 13px; color: rgb(255, 255, 255); width: max-content; max-width: 150px; transition: inherit; pointer-events: none; visibility: hidden;"><p style="display: inline;">Theater Mode</p></div></div>')
-  $('.se-pip').on('click', function(e) {
-    $(this).attr('disabled', true)
-    openPip(document.getElementsByClassName('vjs-tech')[0])
-    $(this).attr('disabled', false)
-  });
+  if(!$('body').hasClass('se-init-pip')) {
+
+    $(el).next().append('<div class="se-pip hover-btn drop-shadow-container hidden" aria-label="Theater Mode" data-listener-count-pointerenter="3" data-listener-count-pointerleave="3" ts="_" id="theater-mode-icon" data-listener-count-click="1" style="display: inline-flex; position: relative; align-items: center; justify-content: center; min-width: 32px; user-select: none; pointer-events: auto;"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pip"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5zM1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" fill="#fff"/><path d="M8 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5z" fill="#fff"/></svg><div class="no-drop-shadow video-controls-tooltip" ts="N" style="position: absolute; display: block; opacity: 0; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); border-radius: 4px; background-color: rgba(0, 0, 0, 0.92); padding: 8px 16px; text-align: center; font-size: 13px; color: rgb(255, 255, 255); width: max-content; max-width: 150px; transition: inherit; pointer-events: none; visibility: hidden;"><p style="display: inline;">Theater Mode</p></div></div>')
+    $('.se-pip').on('click', function(e) {
+      $(this).attr('disabled', true)
+      openPip(document.getElementsByClassName('vjs-tech')[0])
+      $(this).attr('disabled', false)
+    });
+    $('body').addClass('se-init-pip')
+  }
 }
 function toggleFullscreen(elem) {
 
@@ -1156,4 +1203,12 @@ function getRoomDossier() {
   roomDossier =  roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
 
   return roomDossier
+}
+
+// get/set remoteStorage
+function remoteStorageGet(key, val) {
+  
+}
+function remoteStorageSet(key, val) {
+  
 }
