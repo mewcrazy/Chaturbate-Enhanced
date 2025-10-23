@@ -62,6 +62,38 @@ function moveBottomTabs(el) {
 
 
 /**
+ * Custom Gender Tabs
+ */
+waitForKeyElements('.genderTabs.sub-nav', addCustomGenderTabs, false);
+function addCustomGenderTabs(el) {
+  
+  if(!$('.se-custom-gender-tab').length)
+    $(el).append('<li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" class="gender-tab tabElement tabElementLink" href="https://chaturbate.com/followed-cams/female/" style="display: inline-block;">+</a></li>')
+}
+
+
+/**
+ * View Banned Rooms
+ */
+waitForKeyElements('.BaseRoomContents [data-testid="denied-notice"]', viewBannedRoom, false);
+function viewBannedRoom(el) {
+
+  $('body').addClass('se-banned-room')
+
+  // append
+  $(el).parent().append(getResource('html/view-banned-room.html'))
+}
+
+
+/**
+ * Dark Mode Detection
+ */
+if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  $('body').removeClass('lightmode').addClass('darkmode')
+}
+
+
+/**
  * Save Player Volume
  */
 waitForKeyElements("#TheaterModePlayer .vjs-tech", savePlayerVolume, false);
@@ -559,7 +591,7 @@ function showTakeScreenshotButton(el) {
 /**
  * Take Screenshot
  */
-waitForKeyElements('#satisfactionScore', addTakeScreenshot);
+waitForKeyElements('body:not(.se-banned-room) #satisfactionScore', addTakeScreenshot);
 function addTakeScreenshot(el) {
   $(el).after('<div ts="N" class="se-take-screenshot sendTipButton se-disabled" data-testid="take-screenshot-button" style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;"><span></span><span>SCREENSHOT</span></div>');
 
@@ -1085,6 +1117,7 @@ function addFavoritesFilters(el) {
         && !$(this).find('[class*="ModelThumbPrivateCover__label"]').length
       )
     }).addClass('hidden')
+
   })
 
   // switch grid template
@@ -1126,6 +1159,17 @@ function populateCountryFilter() {
     })
   }, 500)
 }
+
+// waitForKeyElements('body', drecksKanacken, false);
+// function drecksKanacken(el) {
+
+  // var observer = new MutationObserver(function(e) {
+
+  // });
+  // observer.observe($('.list.endless_page_template')[0], {characterData: true, childList: true, subtree: true});
+  // SE Follows
+  // $('.list.endless_page_template').append('<li class="roomCard camBgColor se-roomcard" data-testid="room-card" ts="f"><a href="#" data-room-nav="true" data-room="username" class="room_thumbnail_container"><img width="180" height="101" src="https://jpeg.live.mmcdn.com/minifwap/lizeth_salazar.jpg?f=0.2622172719922623" data-testid="room-card-image" alt="lizeth_salazar" data-room-nav="true" data-wide-image="true" class="room_thumbnail"></a><div class="labelContainer"><div class="thumbnail_label" data-testid="thumbnail-label"></div></div><div class="details" ts="w"><div class="cardTitle title"><a href="/lizeth_salazar/" data-room="lizeth_salazar" data-room-nav="true" data-testid="room-card-username" data-listener-count-click="1">lizeth_salazar</a><div class="age_gender_container"><span class="age" data-testid="room-card-age">20</span><span class="camAltTextColor genderf" title="Female" data-testid="room-card-gender"></span><span class="thumbnail_flag" data-testid="room-card-thumbnail-flag"><div ts="FlagIconWrapper"><span data-testid="room-card-country" class="fi fi-co" title="Colombia"></span></div></span></div></div><ul class="subject camSubjectColor" title="fuck my pussy wet at goal @200 #bigboobs #latina #teen #lovense #cute [0 tokens remaining]" ts="y"><li>fuck my pussy wet at goal @200 <a href="https://chaturbate.com/followed-cams/?tag=bigboobs" class="camSubjectTagColor" data-listener-count-click="1">#bigboobs</a> <a href="https://chaturbate.com/followed-cams/?tag=latina" class="camSubjectTagColor" data-listener-count-click="1">#latina</a> <a href="https://chaturbate.com/followed-cams/?tag=teen" class="camSubjectTagColor" data-listener-count-click="1">#teen</a> <a href="https://chaturbate.com/followed-cams/?tag=lovense" class="camSubjectTagColor" data-listener-count-click="1">#lovense</a> <a href="https://chaturbate.com/followed-cams/?tag=cute" class="camSubjectTagColor" data-listener-count-click="1">#cute</a> [0 tokens remaining]</li></ul><ul class="sub-info camAltTextColor"><li class="location" data-testid="room-card-location" style="white-space: nowrap;">Colombia</li><li class="cams " style="white-space: nowrap;"><span class="time">3.3 hrs</span><span class="comma">, </span><span class="viewers">8 viewers</span></li><li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="#fff"></path></svg></li></ul></div><div data-slug="lizeth_salazar" data-testid="follow-star" class="follow_star icon_following" title="Unfollow" ts="c"></div></li>')
+// }
 
 /**
  * Global Functions

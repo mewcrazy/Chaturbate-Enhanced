@@ -13,6 +13,7 @@
 ## Features:
 - Translate chat messages & direct messages on-the-fly in over different 100 languages with 1-click
 - Chat Message Templates (no need to type everything again and again)
+- Sound Notifications on new Direct Messages
 - Filter your followed rooms by country, age, private prices and more
 - Save Chaturbate Screenshots with 1-click
 - Picture in Picture Mode & Open Fullscreen with middle click as well as double click
@@ -31,6 +32,10 @@ Simply install the Chaturbate Enhanced browser extension for your preferred brow
 </p>
 
 Please note that this extension requires an API Key for the Google Cloud Translation API. Simply log in your Google account, and create a New Project for the Cloud Translation API. After you can click on "Login Credentials" and create a new API Key which you can paste into the Extension.
+
+## Known Bugs
+- When hitting Enter after sending a chat message, the cursor moves out of focus and the chat box has to be clicked first to write again.
+- 
 
 ## Language list
 Chaturbate Enhanced supports translation into all available languages offered by Google's Cloud Translation API, in total *123 languages*.

@@ -1,0 +1,370 @@
+<div class="topSectionWrapper"
+    style="width: 100%; height: auto; position: relative; display: grid; grid-template-columns: auto auto 1fr;">
+    <div ts="j" id="VideoPanel" data-testid="video-panel"
+        style="height: auto; width: 502px; overflow: visible; -webkit-tap-highlight-color: transparent; display: inline-block; border-radius: 2px; box-sizing: border-box; font-family: UbuntuRegular, Helvetica, Arial, sans-serif; font-size: 11px; min-width: 502px; max-width: 502px;">
+        <div class="playerTitleBar" style="display: block;">
+            <div
+                style="margin: 0px 7px -5px 0px; padding-top: 3px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10px;">
+                <div class="reportAbuseLink se-button-disabled"><a class="reportRoom"
+                        data-testid="report-room-button" data-paction="ReportAbuse">Report Room</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 5px;"></div>
+<div ts="Ne" id="roomTabs" data-testid="room-tabs"
+    style="height: 100%; width: 100%; position: static; overflow: visible; -webkit-tap-highlight-color: transparent; border-radius: 4px 4px 0px 0px; box-sizing: border-box; padding-bottom: 1px; min-height: 200px;">
+    <div ts="n" data-testid="room-tab-bar" class="tabBar"
+        style="position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; height: 30px; padding: 8px 4px; box-sizing: border-box; border-radius: 2px 2px 0px 0px;">
+        <div data-paction="BroadcasterFeedback">
+            <div style="display: inline-block; float: right; position: relative; width: auto; right: 1px;">
+                <div ts="N" class="followButton" data-testid="follow-button"
+                    style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 0px; line-height: 1.4;">
+                    <span></span><span>FOLLOW</span>
+                </div>
+                <div ts="D" class="FollowNotificationButton" data-testid="follow-notification-button"
+                    style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 0px 2px 5px; top: -4px; float: right; border-radius: 0px 3px 3px 0px; cursor: pointer; margin-right: 0px; line-height: 1.4; border-width: 1px 1px 1px 0px; border-style: solid;">
+                    <span class="notification-btn-icon static smart"
+                        style="width: 20px; height: 20px; display: inline-block; background-repeat: no-repeat;"></span><span></span>
+                </div>
+                <div ts="E" class="unfollowButton" data-testid="unfollow-button"
+                    style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px 0px 0px 3px; cursor: pointer; margin-right: 0px; line-height: 1.4; border-width: 1px; border-style: solid;">
+                    <span></span><span>UNFOLLOW</span>
+                </div>
+            </div>
+            <div ts="xe" class="fanclubButton se-button-disabled" data-testid="fanclub-button"
+                style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: block; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; right: 1px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;">
+                <span></span><span style="text-transform: uppercase;">Join Fan Club</span>
+            </div>
+            <div ts="De" id="satisfactionScore" data-testid="satisfaction-score-section" class="disabled"
+                style="height: 100%; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 4px 10px; top: -4px; right: 1px; float: right; border-radius: 4px; margin-right: 5px;">
+                <div>
+                    <div style="display: inline-block; vertical-align: top;">
+                        <div class="se-button-disabled" style="display: inline-block; vertical-align: top;">
+                            <span data-testid="up-votes-count"
+                                style="margin: 0px 3px; vertical-align: top; display: inline;">109</span><img
+                                src="https://web.static.mmcdn.com/tsdefaultassets/thumbs-up-inactive.svg" height="15"
+                                width="15" data-testid="thumbs-up-button"
+                                style="height: 15px; width: 15px; vertical-align: top; margin: 0px 3px; opacity: 0.65;"><img
+                                src="https://web.static.mmcdn.com/tsdefaultassets/thumbs-up-active.svg" height="15"
+                                width="15" data-testid="thumbs-up-active-button"
+                                style="height: 15px; width: 15px; vertical-align: top; margin: 0px 3px; opacity: 0.8; display: none;">
+                        </div>
+                        <span data-testid="percent-score" class="highPercent"
+                            style="margin: 0px 3px; vertical-align: top; display: inline;">99%</span>
+                        <div class="se-button-disabled" style="display: inline-block; vertical-align: top;">
+                            <img src="https://web.static.mmcdn.com/tsdefaultassets/thumbs-down-inactive.svg" height="15"
+                                width="15" data-testid="thumbs-down-button"
+                                style="height: 15px; width: 15px; vertical-align: top; margin: 0px 3px; opacity: 0.65;"><img
+                                src="https://web.static.mmcdn.com/tsdefaultassets/thumbs-down-active.svg" height="15"
+                                width="15" data-testid="thumbs-down-active-button"
+                                style="height: 15px; width: 15px; vertical-align: top; margin: 0px 3px; opacity: 0.8; display: none;"><span
+                                data-testid="down-votes-count"
+                                style="margin: 0px 3px; vertical-align: top; display: inline;">2</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ts="n" data-paction="RoomTabs"
+            style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; height: 24px; top: -2px;">
+            <a ts="m" class="tabLink tabOpen" href="#" data-testid="room-tab-Bio"
+                style="height: 17px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; border-radius: 4px 4px 0px 0px; text-decoration: none; margin-right: 2px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 13px; padding: 4px 8px; float: left; display: block; margin-top: 0px;">Bio</a>
+            <!--<div ts="n"
+                style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 15px;">
+            </div><a ts="m" class="tabLink" href="#" data-testid="room-tab-Pics &amp; Videos"
+                style="height: 17px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; border-radius: 4px 4px 0px 0px; text-decoration: none; margin-right: 2px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 13px; padding: 4px 8px; float: left; display: block; margin-top: 0px;">Pics
+                &amp; Videos</a><a ts="m" class="tabLink" href="#" data-testid="room-tab-More Rooms Like This"
+                style="height: 17px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; border-radius: 4px 4px 0px 0px; text-decoration: none; margin-right: 2px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 13px; padding: 4px 8px; float: left; display: block; margin-top: 0px;">More
+                Rooms Like This</a><a ts="m" class="tabLink" href="#" data-testid="room-tab-Share"
+                style="height: 17px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; border-radius: 4px 4px 0px 0px; text-decoration: none; margin-right: 2px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 13px; padding: 4px 8px; float: left; display: block; margin-top: 0px;">Share</a>
+            <div ts="d" class="chatAreaTabColor dropdown-anchor tabLink" data-listener-count-click="1"
+                data-listener-count-keydown="1"
+                style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 4px 8px; text-align: center; user-select: none; display: none; height: 24px; border-radius: 4px 4px 0px 0px; text-decoration: none; margin-right: 2px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 13px; float: left; width: 32px;">
+                .&thinsp;.&thinsp;.</div>-->
+        </div>
+        <div class="tooltip"
+            style="width: 220px; border-width: 1px; position: absolute; border-style: solid; border-radius: 4px; font-size: 14px; padding: 8px 0px 8px 8px; display: none; z-index: 5; line-height: 22px;">
+            <div class="divotTop divot" style="position: absolute; height: 0px; width: 0px; top: -8px; left: 123px;">
+                <div class="divotBorder"
+                    style="border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom-width: 8px; border-bottom-style: solid;">
+                    <div class="divotBackground"
+                        style="position: absolute; top: 1px; left: 1px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom-width: 7px; border-bottom-style: solid;">
+                    </div>
+                </div>
+            </div><span>After tipping 25 tokens in a day, you'll be able to vote regarding your satisfaction with
+                Nyconik.</span>
+        </div>
+        <div class="tooltip"
+            style="width: 220px; border-width: 1px; position: absolute; border-style: solid; border-radius: 4px; font-size: 14px; padding: 8px 0px 8px 8px; display: none; z-index: 5; line-height: 22px;">
+            Follow broadcasters to receive instant notifications when they come online.<div class="divotTop divot"
+                style="position: absolute; height: 0px; width: 0px; top: -8px; left: 170px;">
+                <div class="divotBorder"
+                    style="border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom-width: 8px; border-bottom-style: solid;">
+                    <div class="divotBackground"
+                        style="position: absolute; top: 1px; left: 1px; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom-width: 7px; border-bottom-style: solid;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ts="Me" id="satisfactionComment" data-testid="satisfaction-comment"
+            style="height: fit-content; width: 350px; position: absolute; -webkit-tap-highlight-color: transparent; display: none; border-width: 2px; border-style: solid; border-radius: 4px; bottom: 35px; right: 0px; z-index: 11; left: 1541.5px;">
+            <div class="divot"
+                style="position: absolute; height: 0px; width: 0px; bottom: 0px; left: -8px; display: block;">
+                <div class="divotBorder"
+                    style="border-left: 8px solid transparent; border-right: 8px solid transparent; border-top-width: 8px; border-top-style: solid;">
+                    <div class="divotBackground"
+                        style="position: absolute; top: 0px; left: 3px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top-width: 5px; border-top-style: solid;">
+                    </div>
+                </div>
+            </div>
+            <div class="divot"
+                style="position: absolute; height: 0px; width: 0px; top: -8px; left: -8px; display: none;">
+                <div class="divotBorder"
+                    style="border-left: 8px solid transparent; border-right: 8px solid transparent; border-bottom-width: 8px; border-bottom-style: solid;">
+                    <div class="divotBackground"
+                        style="position: absolute; top: 3px; left: 3px; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 5px solid rgb(224, 224, 224);">
+                    </div>
+                </div>
+            </div>
+            <div class="header"
+                style="box-sizing: border-box; width: 100%; font-size: 15px; font-weight: bold; padding: 6px; border-radius: 4px 4px 0px 0px;">
+                Submit feedback to broadcaster</div>
+            <div style="padding: 6px; font-size: 13px;">Your confidential vote regarding Nyconik has been recorded. You
+                may change your vote at any time today. Thank you for your feedback.</div>
+            <div data-testid="comment-section"></div>
+        </div>
+    </div>
+    <div ts="C" class="BioContents" data-testid="room-bio-tab-contents"
+        style="position: static; overflow: hidden; -webkit-tap-highlight-color: transparent; min-height: 325px; margin: 0px; box-sizing: border-box; padding-left: 8px; width: 100%;">
+        <div style="padding-left: 14px; overflow: hidden; position: relative; z-index: 0;">
+            <table style="table-layout: fixed; width: 100%; margin-right: 14px; padding-right: 14px;">
+                <tr style="height: 1px;">
+                    <th style="width: 150px; min-width: 150px;"></th>
+                    <th></th>
+                </tr>
+                <tr style="vertical-align: top;">
+                    <th colspan="2">
+                        <h1 data-testid="bio-header" class="defaultColor bioHeader"
+                            style="font-size: 14.4px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; font-weight: normal; margin: 10px 0px 20px; line-height: 20px; text-align: left;">
+                            Nyconik's Bio and Free Webcam</h1>
+                    </th>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-real-name-label">Real Name:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-real-name-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        Nicol</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-followers-label">Followers:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-followers-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        672983</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-birth-date-label">Birth Date:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-birth-date-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        Aug. 13, 1901</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-age-label">Age:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-age-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        99</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-i-am-label">I Am:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-i-am-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        A Woman</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-interested-in-label">Interested In:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-interested-in-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        Men</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-location-label">Location:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-location-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        Follow me!! :))</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-last-broadcast-label">Last Broadcast:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-last-broadcast-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        13 minutes ago</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-body-type-label">Body Type:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-body-type-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        slim</td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-smoke-drink-label">Smoke / Drink:</span>
+                    </td>
+                    <td class="contentText bioContentText" data-testid="bio-tab-smoke-drink-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        no</td>
+                </tr>
+                <tr class="smContainer"
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-social-media-label">Social Media:</span>
+                    </td>
+                    <td class="contentText bioContentText " data-testid="bio-tab-social-media-value"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        <a data-testid="social-media-item" href="/socials/social_media/nyconik/116518/"
+                            class="socialMediaUpload se-button-disabled" title="Instagram - Lifetime"
+                            data-listener-count-mouseenter="1" data-listener-count-mouseleave="1"
+                            style="position: relative; display: inline-block; margin-bottom: 17px; margin-right: 5px; cursor: pointer;"><img
+                                data-testid="social-media-preview" class="previewBorder"
+                                src="https://web.static.mmcdn.com/images/socials/instagram.svg" width="150" height="100"
+                                style="border-width: 1px; border-style: solid; display: block; border-radius: 3%;"><span
+                                data-testid="social-media-tokens-badge" class="tokenText"
+                                style="background-color: rgb(0, 153, 0); position: absolute; bottom: 16px; right: 0px; margin: 8px; font-size: 9px; border-radius: 2px; padding: 1px 3px; line-height: 12px;">1
+                                TOKEN</span>
+                            <div data-testid="social-media-title" class="link"
+                                style="font-size: 14px; left: 0px; max-width: 145px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 16px; text-decoration: none;">
+                                Instagram - Lifetime</div>
+                        </a><a data-testid="social-media-item" href="/socials/social_media/nyconik/116494/"
+                            class="socialMediaUpload se-button-disabled" title="WhatsApp - 1 Month"
+                            data-listener-count-mouseenter="1" data-listener-count-mouseleave="1"
+                            style="position: relative; display: inline-block; margin-bottom: 17px; margin-right: 5px; cursor: pointer;"><img
+                                data-testid="social-media-preview" class="previewBorder"
+                                src="https://web.static.mmcdn.com/images/socials/whatsapp.svg" width="150" height="100"
+                                style="border-width: 1px; border-style: solid; display: block; border-radius: 3%;"><span
+                                data-testid="social-media-tokens-badge" class="tokenText"
+                                style="background-color: rgb(0, 153, 0); position: absolute; bottom: 16px; right: 0px; margin: 8px; font-size: 9px; border-radius: 2px; padding: 1px 3px; line-height: 12px;">500
+                                TOKENS</span>
+                            <div data-testid="social-media-title" class="link"
+                                style="font-size: 14px; left: 0px; max-width: 145px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; line-height: 16px; text-decoration: none;">
+                                WhatsApp - 1 Month</div>
+                        </a>
+                        <div style="margin-bottom: 20px;"></div>
+                    </td>
+                </tr>
+                <tr
+                    style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;">
+                    <td class="label"
+                        style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;">
+                        <span data-testid="bio-tab-wish-list-label">Wish List:</span>
+                    </td>
+                    <td class="contentText bioContentText"
+                        style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                        <div data-testid="bio-tab-wish-list-value">
+                            <p style="display: unset;">Hey guys! Please be nice! Enjoying! :) <br>6666 tokens in one tip
+                                it's my dream wish!</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!--<div ts="K" id="PhotoVideos" class="photovideos-container" tabindex="-1" data-listener-count-keydown="1"
+        style="height: 0px; width: 0px; position: static; overflow: hidden; -webkit-tap-highlight-color: transparent; padding: 0px; box-sizing: border-box; user-select: text;">
+        <div data-testid="media-contents">
+            <div ts="H" data-testid="photo-video-detail-section" class="photoVideoDetailSection"
+                style="height: auto; width: 1664px; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; min-height: 10px; user-select: text; padding-left: 13px;">
+                <div style="width: 100%; margin-bottom: 15px;">Loading...</div>
+                <div style="width: 100%; user-select: none;"></div>
+            </div>
+            <div ts="Y" data-testid="video-set-section"
+                style="height: 100%; width: 100%; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent;">
+                <div style="margin-top: 0px; padding-left: 13px;">
+                    <div style="text-align: left; display: inline-block; font-size: 16px; font-weight: bold;"></div>
+                    <div class="psToggleSort dropdown-anchor" data-testid="psToggleSort" data-listener-count-click="1"
+                        data-listener-count-keydown="1"
+                        style="padding-left: 8px; display: none; font-size: 14px; cursor: pointer;">Filter by: Newest
+                        First<div class="psDropDownArrow"></div>
+                    </div>
+                </div>
+                <div class="photoSetsDiv" data-testid="photoSetsDiv"
+                    style="margin: 9px 0px; line-height: 15px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                </div>
+            </div>
+            <div ts="Y" data-testid="picture-set-section"
+                style="height: 100%; width: 100%; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent;">
+                <div style="margin-top: 10px; padding-left: 13px;">
+                    <div style="text-align: left; display: inline-block; font-size: 16px; font-weight: bold;"></div>
+                    <div class="psToggleSort dropdown-anchor" data-testid="psToggleSort" data-listener-count-click="1"
+                        data-listener-count-keydown="1"
+                        style="padding-left: 8px; display: none; font-size: 14px; cursor: pointer;">Filter by: Newest
+                        First<div class="psDropDownArrow"></div>
+                    </div>
+                </div>
+                <div class="photoSetsDiv" data-testid="photoSetsDiv"
+                    style="margin: 9px 0px; line-height: 15px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ts="ke" class="MoreRooms defaultColor" data-testid="more-rooms-like-this-tab-contents"
+        style="height: 100%; width: 100%; position: static; overflow: hidden; -webkit-tap-highlight-color: transparent; min-height: 395px; padding: 15px; box-sizing: border-box; margin: 10px 0px; display: none;">
+        <span style="display: block; font-size: 12px;">loading...</span>
+        <div style="display: none; font-size: 14px;">
+            <div style="margin-bottom: 10px;"></div>
+            <div style="margin-bottom: 10px;">Here are some trending rooms instead:</div>
+        </div>
+        <ul class="list show-location" ts="Le" style="position: static; overflow: visible;"></ul>
+    </div>
+    <div ts="c" id="shareTab" class="defaultColor"
+        style="height: 100%; width: 100%; position: static; overflow: hidden; -webkit-tap-highlight-color: transparent; min-height: 395px; padding: 15px; box-sizing: border-box; display: none;">
+        <span style="display: block; font-size: 12px;">loading...</span>
+        <div style="display: none;">
+            <div class="title" data-testid="share-title"
+                style="font-size: 14.4115px; line-height: 20.1761px; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; margin-bottom: 20px;">
+                Token Link codes</div>
+            <div data-testid="share-text" style="font-size: 14.4115px; line-height: 20.1761px; margin: 14.4115px 0px;">
+                Earn up to 10 tokens for every registered user and 500 tokens for users who broadcast (broadcasters must
+                earn $20.00 before they qualify).</div>
+            <div data-testid="share-subtext"
+                style="margin-bottom: 12.0108px; font-size: 12.0108px; line-height: 16.8px; font-weight: bold;">Please
+                send to chaturbate using one of the link codes below.</div>
+        </div>
+    </div>-->
+</div>
