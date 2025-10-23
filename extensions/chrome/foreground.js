@@ -64,11 +64,17 @@ function moveBottomTabs(el) {
 /**
  * Custom Gender Tabs
  */
-waitForKeyElements('.genderTabs.sub-nav', addCustomGenderTabs, false);
+waitForKeyElements('.genderTabs', addCustomGenderTabs, false);
 function addCustomGenderTabs(el) {
   
-  if(!$('.se-custom-gender-tab').length)
-    $(el).append('<li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" class="gender-tab tabElement tabElementLink" href="https://chaturbate.com/followed-cams/female/" style="display: inline-block;">+</a></li>')
+  // add gender tab (twice, one for model template, one for homepage template)
+  if(!$('.se-custom-gender-tab').length) {
+    if($('.genderTabs.sub-nav').length) {
+      $(el).append('<li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" class="gender-tab tabElement tabElementLink" href="https://chaturbate.com/followed-cams/female/" style="display: inline-block;">+</a></li>')
+    } else {
+      $(el).find('div:first-child > div:first-child').append('<li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" class="gender-tab tabElement tabElementLink" href="https://chaturbate.com/followed-cams/female/" style="display: inline-block;">+</a></li>')
+    }
+  }
 }
 
 
@@ -581,10 +587,10 @@ function addLangDropdownPrivateChats(el) {
 /**
  * Lifecycle: Player started
  */
-waitForKeyElements('.vjs-has-started', showTakeScreenshotButton);
+waitForKeyElements('.vjs-has-started', showTakeScreenshotButton, false);
 function showTakeScreenshotButton(el) {
-  $('.se-take-screenshot').removeClass('se-disabled') // "Take Screenshot" Button
-  $('.se-pip').removeClass('se-disabled') // "Picture in Picture" Button
+  $('.se-take-screenshot').removeClass('se-hidden') // "Take Screenshot" Button
+  $('.se-pip').removeClass('se-hidden') // "Picture in Picture" Button
 }
 
 
@@ -721,7 +727,7 @@ function playNotificationSound() {
 /**
  * Picture in Picture
  */
-waitForKeyElements(".theater-overlay", videoAddPip);
+waitForKeyElements(".theater-overlay", videoAddPip, false);
 function videoAddPip(el) {
 
   // midclick fullscreen
@@ -742,7 +748,7 @@ function videoAddPip(el) {
   // pip
   if(!$('body').hasClass('se-init-pip')) {
 
-    $(el).next().append('<div class="se-pip hover-btn drop-shadow-container hidden" aria-label="Theater Mode" data-listener-count-pointerenter="3" data-listener-count-pointerleave="3" ts="_" id="theater-mode-icon" data-listener-count-click="1" style="display: inline-flex; position: relative; align-items: center; justify-content: center; min-width: 32px; user-select: none; pointer-events: auto;"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pip"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5zM1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" fill="#fff"/><path d="M8 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5z" fill="#fff"/></svg><div class="no-drop-shadow video-controls-tooltip" ts="N" style="position: absolute; display: block; opacity: 0; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); border-radius: 4px; background-color: rgba(0, 0, 0, 0.92); padding: 8px 16px; text-align: center; font-size: 13px; color: rgb(255, 255, 255); width: max-content; max-width: 150px; transition: inherit; pointer-events: none; visibility: hidden;"><p style="display: inline;">Theater Mode</p></div></div>')
+    $(el).next().append('<div class="se-pip hover-btn drop-shadow-container se-hidden" aria-label="Theater Mode" data-listener-count-pointerenter="3" data-listener-count-pointerleave="3" ts="_" id="theater-mode-icon" data-listener-count-click="1" style="display: inline-flex; position: relative; align-items: center; justify-content: center; min-width: 32px; user-select: none; pointer-events: auto;"><svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-pip"><path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h13A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5zM1.5 3a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z" fill="#fff"/><path d="M8 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-5a.5.5 0 0 1-.5-.5z" fill="#fff"/></svg><div class="no-drop-shadow video-controls-tooltip" ts="N" style="position: absolute; display: block; opacity: 0; bottom: calc(100% + 5px); left: 50%; transform: translateX(-50%); border-radius: 4px; background-color: rgba(0, 0, 0, 0.92); padding: 8px 16px; text-align: center; font-size: 13px; color: rgb(255, 255, 255); width: max-content; max-width: 150px; transition: inherit; pointer-events: none; visibility: hidden;"><p style="display: inline;">Theater Mode</p></div></div>')
     $('.se-pip').on('click', function(e) {
       $(this).attr('disabled', true)
       openPip(document.getElementsByClassName('vjs-tech')[0])
