@@ -960,6 +960,7 @@ function addLangDropdown(jNode) {
           } else {
               // no translation needed
               submitButton.click()
+              $(this).val('').focus()
           }
           $('.se-loader-line').remove()
         }
@@ -1009,20 +1010,36 @@ function addLangDropdown(jNode) {
 
     // select/switch language
     $('.msg-list-wrapper-split').off().on('click', '.language-chooser .flag', function(e) {
+      let lang = $(this).attr('data-lang')
+      
+      // add to recent list
+      $('.language-list.recent').prepend($(this).prop('outerHTML'))
 
-        $('.se-langpicker').find('.flag,use').remove()
-        if($(this).hasClass('active')) {
-            $(this).removeClass('active')
-            $('.se-langpicker').attr('data-active', '')
-            localStorage.setItem('prefTranslationLang', "")
-        } else {
-          $('.se-langpicker').prepend($(this).html())
-          $('.language-chooser .flag.active').removeClass('active')
-          $(this).addClass('active')
-          $('.se-langpicker').attr('data-active', $(this).attr('data-lang'))
-          localStorage.setItem('prefTranslationLang', $(this).attr('data-lang'))
-          $('.language-chooser').addClass("hidden")
-        }
+      // select/switch
+      $('.se-langpicker').find('.flag,use').remove()
+      if($(this).hasClass('active')) {
+          $(this).removeClass('active')
+          $('.se-langpicker').attr('data-active', '')
+          localStorage.setItem('prefTranslationLang', "")
+      } else {
+        $('.se-langpicker').prepend($(this).html())
+        $('.language-chooser .flag.active').removeClass('active')
+        $(this).addClass('active')
+        $('.se-langpicker').attr('data-active', lang)
+        localStorage.setItem('prefTranslationLang', lang)
+        $('.language-chooser').addClass("hidden")
+      }
+
+      // add recent language to localStorage
+      let recentLangs = localStorage.getItem("SE_recentLanguages")
+      if(!recentLangs) {
+        recentLangs = [lang]
+      } else {
+        recentLangs = JSON.parse(recentLangs)
+        recentLangs.push(lang)
+        recentLangs = recentLangs.slice(0,9)
+      }
+      localStorage.setItem('SE_recentLanguages', JSON.stringify(recentLangs.reverse()))
     })
 
     // search language by html attributes
@@ -1071,7 +1088,11 @@ function addAutoTipButton(el) {
 
   // auto tip button handler
   $('.auto-tip-button').on('click', function(e) {
-    $('#main > div').append(htmlAutoTipOverlay)
+    if(!$('.auto-tip-overlay').length) {
+      $('#main > div').append(htmlAutoTipOverlay)
+    } else {
+      $(".auto-tip-overlay").remove();
+    }
   })
 
   // send auto tip
@@ -1085,6 +1106,15 @@ function addAutoTipButton(el) {
     let username = "xxxxxxx"; // user to tip
     //eval('for(i=0;i<tokens;i++) { setTimeout(function() { $.post("https://chaturbate.com/tipping/send_tip/" + username + "/", {"csrfmiddlewaretoken":$.cookie("csrftoken"), tip_amount: tip_amount})}, i*timeout)}')
   })
+  
+  // close auto tip overlay on outside click
+  $(document).on('click', function (e) {
+    if($(".auto-tip-overlay").length) {
+      if (!$('.auto-tip-overlay').is(e.target) && !$('.auto-tip-overlay *').is(e.target) && !$('.auto-tip-button').is(e.target)) {
+        $(".auto-tip-overlay").remove();
+      }
+    }
+  });
 }
 
 
@@ -1352,11 +1382,19 @@ function populateLanguageDropdowns() {
   if($('.language-list:not(.recent)').empty())
     $.each(iso639_langs, function(key, val) {
       if(val.active === 1 && !$('.language-list .flag-'+val.name).length) {
-        $('.language-list:not(.recent)').prepend('<button aria-label="'+val.name+'" class="flag flag-'+val.name+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
+        $('.language-list:not(.recent)').prepend('<button aria-label="'+val.name+'" class="flag flag-'+key+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
       }
     })
 
-  let recent = ["de", "dk"]
+  let recent = localStorage.getItem('SE_recentLanguages')
+  recent = JSON.parse(recent)
+  $.each(recent, function(index, val) {
+    key = val
+    val = iso639_langs[key]
+    if(!$('.language-list.recent .flag-'+key).length) {
+      $('.language-list.recent').prepend('<button aria-label="'+val.name+'" class="flag flag-'+key+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
+    }
+  })
 }
 
 // get RoomDossier

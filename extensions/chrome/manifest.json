@@ -55,6 +55,16 @@
                 "*://chaturbate.com/p/*/?tab=*",
                 "*://*.chaturbate.com/p/*/?tab=*"
             ]
+        },
+        {
+            "js":[
+                "page-broadcast.js"
+            ],
+            "css": [],
+            "matches": [
+                "*://chaturbate.com/b/*",
+                "*://*.chaturbate.com/b/*"
+            ]
         }
     ],
     "web_accessible_resources": [
