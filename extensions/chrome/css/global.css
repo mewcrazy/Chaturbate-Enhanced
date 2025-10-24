@@ -76,10 +76,13 @@ button + .se-loader { display: none; }
 .language-chooser .close svg { pointer-events: none; }
 .language-list.recent { height: auto; }
 .language-list { height: 100%; overflow-y: auto; max-height: 209px; margin-right: 21ppx; padding: 0 8px; }
+.language-list h4 { font-weight: 400; padding: 0 7px; margin: 0; }
 .language-list >.flag { background: none; outline: 0; border: 0; cursor: pointer; line-height: 1; margin: 3px 7px; padding: 0; cursor: pointer; height: auto; }
 .language-list >.flag.active { border: 1px solid #fff }
 .language-list >.flag svg { background: none; width: 25px; height: 17px; padding: 3px 0; pointer-events: none; }
 .language-list .flag-ta, .language-list .flag-sa, .language-list .flag-pa, .language-list .flag-ne { background: #fff; }
+.language-list .se-loader { display: none; }
+.language-list.se-loading .se-loader { display: block; }
 .input.language-search { background: rgba(0,0,0,.2); padding: 10px 15px; height: 30px; border-radius: 15px; color: #fff; }
 .input.language-search:hover { background: rgba(0,0,0,1) }
 .FullvideoChatDivChat .language-list { margin-right: 0; }
@@ -222,6 +225,13 @@ button + .se-loader { display: none; }
 .se-dm-sound-toggle.se-sound-off path { stroke: rgba(255,255,255,.1) }
 .dmWindowHeader > div:first-child { width: calc(100% - 88px) !important; }
 
+
+/* theme: halloween */
+.se-theme-halloween .nav-bar { background: #664e2f !important; }
+.se-theme-halloween, .se-theme-halloween #header { background: #ffe1bb !important; }
+.se-theme-halloween { background: #eedec1 !important; }
+.se-theme-halloween { color: #121212 !important; }
+.se-theme-halloween { background: #fdfaec !important; }
 
 /* keyframes */
 @keyframes rotate {

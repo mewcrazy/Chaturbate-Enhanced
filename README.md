@@ -6,7 +6,7 @@
 </p>
 
 <p align="center" width="100%">
-    <a href="https://chaturbate.com/in/?tour=g4pe&campaign=HjEmw&track=default" target="_blank"><img width="830" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/github-intro-animation.gif"></a>
+    <a href="https://chaturbate.com/in/?tour=g4pe&campaign=HjEmw&track=default" target="_blank"><img width="830" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/0.5.9/img/github-intro-animation.gif"></a>
 </p>
 
 
@@ -31,11 +31,9 @@ Simply install the Chaturbate Enhanced browser extension for your preferred brow
     <a href="https://github.com/mewcrazy/Chaturbate-Enhanced/releases/latest/download/opera.crx"><img width="206" src="https://github.com/mewcrazy/Chaturbate-Enhanced/raw/main/img/get-it-for-opera.png"></a>
 </p>
 
-Please note that this extension requires an API Key for the Google Cloud Translation API. Simply log in your Google account, and create a New Project for the Cloud Translation API. After you can click on "Login Credentials" and create a new API Key which you can paste into the Extension.
-
 ## Known Bugs
-- When hitting Enter after sending a chat message, the cursor moves out of focus and the chat box has to be clicked first to write again.
-- 
+- Sending a chat message with ENTER makes the cursor move out of focus and the chat box has to be clicked againt to type.
+- Entering the Fullscreen Mode with Middle Click or Double Click might trigger the Theater Mode View after leaving the Fullscreen Mode.
 
 ## Language list
 Chaturbate Enhanced supports translation into all available languages offered by Google's Cloud Translation API, in total *123 languages*.

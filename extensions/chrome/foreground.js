@@ -1,6 +1,6 @@
 jQuery.ajaxSetup({async:false});
 
-// Preload emojis
+/* Preload emojis */
 const emojis = getResource('json/native.json')
 const iso639_langs = getResource('json/iso639-1.json')
 
@@ -14,9 +14,10 @@ var htmlModelOverlay = getResource("html/modelinfo-overlay.html");
 var htmlLangChooser = getResource("html/language-chooser.html");
 var htmlAutoTipOverlay = getResource("html/overlay-auto-tip.html")
 var htmlLangPicker = getResource("html/language-picker.html")
-var htmlTranslateButton = '<span class="translate-line"><button class="a11y-button TranslateButton#ZN TranslateButton_outline#qg chat-message-translate-button" style="float: none; display: inline-block;" type="button"><svg style="height: 14px; width: 14px;" class="IconV2__icon#YR" viewBox="0 0 16 14"><path fill="currentColor" fill-rule="evenodd" d="M10.28 1.72V3h-1.5a18.53 18.53 0 0 1-2.6 4.52l.05.05c.43.46.86.93 1.3 1.38l-.9.9c-.37-.36-.72-.74-1.07-1.13l-.2-.21c-.9.99-1.9 1.88-3 2.67l-.77-1.02.03-.02a17.36 17.36 0 0 0 2.87-2.58c-.52-.6-1.03-1.19-1.52-1.8L2.1 4.68l1-.8.86 1.08c.44.54.9 1.07 1.36 1.6C6.15 5.46 6.84 4.27 7.4 3H.68V1.72h4.48V.44h1.28v1.28h3.84Zm5.04 11.84h-1.38L13 11.32H9.48l-.93 2.24H7.17l3.32-8H12l3.33 8ZM11.24 7.1l-1.22 2.94h2.45L11.24 7.1Z" clip-rule="evenodd"></path></svg></button></span>'
+var htmlTranslateButton = '<span class="translate-line"><button class="a11y-button chat-message-translate-button" style="float: none; display: inline-block;" type="button"><svg style="height: 14px; width: 14px;" viewBox="0 0 16 14"><path fill="currentColor" fill-rule="evenodd" d="M10.28 1.72V3h-1.5a18.53 18.53 0 0 1-2.6 4.52l.05.05c.43.46.86.93 1.3 1.38l-.9.9c-.37-.36-.72-.74-1.07-1.13l-.2-.21c-.9.99-1.9 1.88-3 2.67l-.77-1.02.03-.02a17.36 17.36 0 0 0 2.87-2.58c-.52-.6-1.03-1.19-1.52-1.8L2.1 4.68l1-.8.86 1.08c.44.54.9 1.07 1.36 1.6C6.15 5.46 6.84 4.27 7.4 3H.68V1.72h4.48V.44h1.28v1.28h3.84Zm5.04 11.84h-1.38L13 11.32H9.48l-.93 2.24H7.17l3.32-8H12l3.33 8ZM11.24 7.1l-1.22 2.94h2.45L11.24 7.1Z" clip-rule="evenodd"></path></svg></button></span>'
 var htmlEnhancedOptions = chrome.runtime.getURL('html/enhanced-options.html')
 var htmlCustomGenderTabs = getResource("html/custom-gender-tabs.html")
+
 
 /**
  * Move Bottom Tabs to Top Tab Bar
@@ -62,9 +63,25 @@ function moveBottomTabs(el) {
 }
 
 
+/**
+ * Profile Menu: Themes Dropdown 
+ */
+waitForKeyElements('.userMenuDropDown', addProfileMenuThemes, false);
+function addProfileMenuThemes(el) {
+  let htmlThemesDropdown = '<div class="se-theme-select userInfoDropdownTextColor userInfoDropdownHighlightColor" style="user-select: none; font-size: 14px; font-weight: normal; cursor: pointer; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; padding: 5px 0px 5px 10px;">Site Theme<select name="gender" required="" class="fieldInput" data-listener-count-change="1" data-listener-count-blur="1" data-testid="bio-tab-gender" style="border-width: 1px;border-style: solid;border-radius: 4px;padding: 2px 4px;line-height: 16px;font-size: 12px;margin-top: -2px;float: right;"><option value="">Current Default</option><option value="halloween">Halloween</option><option value="christmas">Christmas</option><option value="valentines">Valentine\'s Day</option></select></div>'
+
+  // prepare page view
+  $(el).prepend(htmlThemesDropdown)
+
+  $('.se-theme-select select').on('change', function(e) {
+    e.preventDefault
+    $('body').attr('class', function(i, c){ return c.replace(/(^|\s)se-theme-\S+/g, '') }).addClass('se-theme-'+$(this).val())
+  })
+}
+
 
 /**
- * Custom Gender Tabs
+ * Custom Page: Hidden Cams
  */
 waitForKeyElements('body.se-page-my-hidden-cams .content_body', showHiddenCamsPage, false);
 function showHiddenCamsPage(el) {
@@ -802,7 +819,7 @@ function addIconSoundForDMs(el) {
 waitForKeyElements("#DmWindowBar .dmWindow", addSoundForDMs);
 function addSoundForDMs(el) {
 
-  // add white mode nav item
+  // add sound toggle icon
   $(el).find('.dmWindowHeader').before('<div class="button se-dm-sound-toggle" data-testid="close" style="position: absolute; height: 20px; width: 20px; border-radius: 5px; top: 5px; right: 60px; display: block;"><svg style="position: relative; height: 16px; width: 16px; left: 5px; top: 4px;" width="16" height="16" viewBox="0 0 0.72 0.72" fill="rgba(255,255,255,.5)"><path d="M0.36 0.165a0.15 0.15 0 0 1 0.15 0.15v0.067a0.06 0.06 0 0 0 0.015 0.04l0.038 0.043c0.026 0.029 0.005 0.075 -0.034 0.075H0.19c-0.039 0 -0.059 -0.046 -0.034 -0.075l0.038 -0.043A0.06 0.06 0 0 0 0.21 0.382V0.315a0.15 0.15 0 0 1 0.15 -0.15m0 0V0.09m-0.27 0.24a0.27 0.27 0 0 1 0.12 -0.225M0.63 0.33a0.27 0.27 0 0 0 -0.12 -0.225M0.33 0.63h0.06" class="sound" stroke="rgba(255,255,255,.5)" stroke-width="0.06" stroke-linecap="round" stroke-linejoin="round"/></svg></div>')
 
   // start after 2sec (so it doesnt notify about loading messages)
@@ -902,170 +919,170 @@ function openPip(elem) {
  */
 waitForKeyElements(".chat-input-form", addLangDropdown, false);
 function addLangDropdown(jNode) {
-    let modelChat = $(jNode).closest('.ChatTabContents')
-    let modelChatInput = $(jNode).find('.customInput.chat-input-field')
-    let modelChatSubmit = $(jNode).closest('.inputDiv').find('.SendButton.chat')
+  let modelChat = $(jNode).closest('.ChatTabContents')
+  let modelChatInput = $(jNode).find('.customInput.chat-input-field')
+  let modelChatSubmit = $(jNode).closest('.inputDiv').find('.SendButton.chat')
 
-    // add dropdown html
-    if(!modelChat.find('.se-langpicker').length) {
-        $(jNode).before(htmlLangPicker);
-        
-        // prepopulate
-        populateLanguageDropdowns()
+  // add dropdown html
+  if(!modelChat.find('.se-langpicker').length) {
+    $(jNode).before(htmlLangPicker);
+    
+    // prepopulate
+    populateLanguageDropdowns()
 
-        // preselect if choosen before
-        if(prefTranslationLang) {
-          setTimeout(function() {
-            $('.se-langpicker').attr('data-active', prefTranslationLang)
-            $('.se-langpicker').prepend('<svg class="flag flag-'+prefTranslationLang+'"><use xlink:href="#'+prefTranslationLang+'"></use></svg>')
-          }, 500);
+    // preselect if choosen before
+    if(prefTranslationLang) {
+      setTimeout(function() {
+        $('.se-langpicker').attr('data-active', prefTranslationLang)
+        $('.se-langpicker').prepend('<svg class="flag flag-'+prefTranslationLang+'"><use xlink:href="#'+prefTranslationLang+'"></use></svg>')
+      }, 500);
+    }
+  }
+
+  // create own input
+  $(jNode).find('.chat-input-field').addClass('se-hidden')
+  $(jNode).append('<input class="se-custom-input customInput chat-input-field" type="text" value="" style="background: none; color: #b3b3b3; height: 16px; width: 100%; position: relative; overflow: scroll hidden; -webkit-tap-highlight-color: transparent; outline: none; border: none; box-sizing: border-box; font-size: 12px; white-space: nowrap; user-select: text; font-family: Helvetica, Arial, sans-serif; line-height: 15px;">')
+
+  // add own keypress event
+  $('.se-custom-input').on('blur input', function(e) {
+    modelChatInput.text($(this).val()).trigger("blur").trigger("input").trigger("paste")
+  })
+
+  $(jNode).closest('div').off().on('click', '.SendButton.chat', function() {
+    $('.se-custom-input').val('')
+  })
+  $('.se-custom-input').on('keydown', function(e) {
+    if(e.which == 13) {
+      e.preventDefault()
+      e.stopImmediatePropagation()
+      e.stopPropagation()
+      $('.language-chooser').addClass("hidden")
+      let submitButton = $(this).parent().parent().find('.SendButton')
+
+      if($('.se-langpicker').attr('data-active')) {
+
+        // only logged in users
+        if(!$('.user_information_container').length) {
+            alert("You have to be logged in to send translated messages.")
+            return
         }
+        
+        translateGoogle($(this).val(), $('.se-langpicker').attr('data-active').toLowerCase(), $('.msg-list-wrapper-split')).then((data) => {
+          let trans = decodeHtml(data.data.translations[0].translatedText)
+          $(this).val('').focus()
+          document.execCommand('insertText', false, trans)
+          modelChatInput.text(trans)
+          submitButton.click()
+        })
+      } else {
+
+        // no translation needed
+        submitButton.click()
+        $(this).val('').focus()
+      }
+      $('.se-loader-line').remove()
+    }
+  })
+
+  // hide language chooser on send button && smiles button click
+  $('.SendButton.chat').on('click', () => { $('.language-chooser').addClass("hidden"); $(this).closest('.inputDiv').find('.se-custom-input').focus(); })
+
+  // click language button
+  $('.se-langpicker').off().on('click', function(e) {
+
+    // split screen
+    if(!$('.msg-list-wrapper-split .language-chooser').length) {
+      $('.msg-list-wrapper-split').append(htmlLangChooser);
+    } else {
+      $('.msg-list-wrapper-split .language-chooser').toggleClass('hidden')
+    }
+    // full screen
+    if(!$('.msg-list-wrapper-fvm .language-chooser').length) {
+      $('.msg-list-wrapper-fvm').append(htmlLangChooser);
+    } else {
+      $('.msg-list-wrapper-fvm .language-chooser').toggleClass('hidden')
+    }
+    
+    // add all languages
+    populateLanguageDropdowns()
+  })
+    
+  // close language chooser
+  $('.window').off().on('click', '.close', function() {
+    $(this).closest('.language-chooser').addClass("hidden")
+  })
+
+  // reset language on right click
+  $(".se-langpicker,.se-langpicker > .flag").on("contextmenu", function() { return false; });
+  $('.se-langpicker').on('mousedown', function(e) {
+    if( e.button == 2 ) {
+      $('.se-langpicker').find('.flag,use').remove()
+      $('.language-chooser .flag').removeClass('active')
+      $('.se-langpicker').attr('data-active', '')
+      localStorage.setItem('prefTranslationLang', "")
+      return false;
+    }
+    return true;
+  })
+
+  // select/switch language
+  $('.msg-list-wrapper-split').off().on('click', '.language-chooser .flag', function(e) {
+    let lang = $(this).attr('data-lang')
+    
+    // add to recent list
+    $('.language-list.recent').prepend($(this).prop('outerHTML'))
+
+    // select/switch
+    $('.se-langpicker').find('.flag,use').remove()
+    if($(this).hasClass('active')) {
+      $(this).removeClass('active')
+      $('.se-langpicker').attr('data-active', '')
+      localStorage.setItem('prefTranslationLang', "")
+    } else {
+      $('.se-langpicker').prepend($(this).html())
+      $('.language-chooser .flag.active').removeClass('active')
+      $(this).addClass('active')
+      $('.se-langpicker').attr('data-active', lang)
+      localStorage.setItem('prefTranslationLang', lang)
+      $('.language-chooser').addClass("hidden")
     }
 
-    // create own input
-    $(jNode).find('.chat-input-field').addClass('se-hidden')
-    $(jNode).append('<input class="se-custom-input customInput chat-input-field" type="text" value="" style="background: none; color: #b3b3b3; height: 16px; width: 100%; position: relative; overflow: scroll hidden; -webkit-tap-highlight-color: transparent; outline: none; border: none; box-sizing: border-box; font-size: 12px; white-space: nowrap; user-select: text; font-family: Helvetica, Arial, sans-serif; line-height: 15px;">')
+    // add recent language to localStorage
+    let recentLangs = localStorage.getItem("SE_recentLanguages")
+    if(!recentLangs) {
+      recentLangs = [lang]
+    } else {
+      recentLangs = JSON.parse(recentLangs)
+      recentLangs.push(lang)
+      recentLangs = recentLangs.slice(0,9)
+    }
+    localStorage.setItem('SE_recentLanguages', JSON.stringify(recentLangs.reverse()))
+  })
 
-    // add own keypress event
-    $('.se-custom-input').on('blur input', function(e) {
-      modelChatInput.text($(this).val()).trigger("blur").trigger("input").trigger("paste")
-    })
+  // search language by html attributes
+  $('.ChatTabContents').off().on("keyup", ".language-search", function() {
+    var value = this.value.toLowerCase().trim();
+    if (value.length >= 1) {
+      var elem = $(this);
+      elem.data('search',  value)
+      .clearQueue().stop()
+      .queue(function() {
+        $(".language-list button").removeClass('hidden').filter(function() {
+            return $(this).attr("data-search").toLowerCase().indexOf(value) === -1;
+        }).addClass('hidden');
+        if (elem.data('search') !=  value) return;
+      });
+    } else if (value.length <= 1) {
+      $(".language-list button").show();
+    }
+  });
 
-    $(jNode).closest('div').off().on('click', '.SendButton.chat', function() {
-      $('.se-custom-input').val('')
-    })
-    $('.se-custom-input').on('keydown', function(e) {
-        if(e.which == 13) {
-          e.preventDefault()
-          e.stopImmediatePropagation()
-          e.stopPropagation()
-          $('.language-chooser').addClass("hidden")
-          let submitButton = $(this).parent().parent().find('.SendButton')
-
-          if($('.se-langpicker').attr('data-active')) {
-
-              // only logged in users
-              if(!$('.user_information_container').length) {
-                  alert("You have to be logged in to send translated messages.")
-                  return
-              }
-              
-              translateGoogle($(this).val(), $('.se-langpicker').attr('data-active').toLowerCase(), $('.msg-list-wrapper-split')).then((data) => {
-                let trans = decodeHtml(data.data.translations[0].translatedText)
-                $(this).val('').focus()
-                document.execCommand('insertText', false, trans)
-                modelChatInput.text(trans)
-                submitButton.click()
-              });
-          } else {
-              // no translation needed
-              submitButton.click()
-              $(this).val('').focus()
-          }
-          $('.se-loader-line').remove()
-        }
-    })
-
-
-    // hide language chooser on send button && smiles button click
-    $('.SendButton.chat').on('click', () => { $('.language-chooser').addClass("hidden"); $(this).closest('.inputDiv').find('.se-custom-input').focus(); })
-
-    // click language button
-    $('.se-langpicker').off().on('click', function(e) {
-
-      // split screen
-      if(!$('.msg-list-wrapper-split .language-chooser').length) {
-        $('.msg-list-wrapper-split').append(htmlLangChooser);
-      } else {
-        $('.msg-list-wrapper-split .language-chooser').toggleClass('hidden')
-      }
-      // full screen
-      if(!$('.msg-list-wrapper-fvm .language-chooser').length) {
-        $('.msg-list-wrapper-fvm').append(htmlLangChooser);
-      } else {
-        $('.msg-list-wrapper-fvm .language-chooser').toggleClass('hidden')
-      }
-      
-      // add all languages
-      populateLanguageDropdowns()
-    })
-      
-    // close language chooser
-    $('.window').off().on('click', '.close', function() {
-      $(this).closest('.language-chooser').addClass("hidden")
-    })
-
-    // reset language on right click
-    $(".se-langpicker,.se-langpicker > .flag").on("contextmenu", function() { return false; });
-    $('.se-langpicker').on('mousedown', function(e) {
-        if( e.button == 2 ) {
-          $('.se-langpicker').find('.flag,use').remove()
-          $('.language-chooser .flag').removeClass('active')
-          $('.se-langpicker').attr('data-active', '')
-          localStorage.setItem('prefTranslationLang', "")
-          return false;
-        }
-        return true;
-    })
-
-    // select/switch language
-    $('.msg-list-wrapper-split').off().on('click', '.language-chooser .flag', function(e) {
-      let lang = $(this).attr('data-lang')
-      
-      // add to recent list
-      $('.language-list.recent').prepend($(this).prop('outerHTML'))
-
-      // select/switch
-      $('.se-langpicker').find('.flag,use').remove()
-      if($(this).hasClass('active')) {
-          $(this).removeClass('active')
-          $('.se-langpicker').attr('data-active', '')
-          localStorage.setItem('prefTranslationLang', "")
-      } else {
-        $('.se-langpicker').prepend($(this).html())
-        $('.language-chooser .flag.active').removeClass('active')
-        $(this).addClass('active')
-        $('.se-langpicker').attr('data-active', lang)
-        localStorage.setItem('prefTranslationLang', lang)
-        $('.language-chooser').addClass("hidden")
-      }
-
-      // add recent language to localStorage
-      let recentLangs = localStorage.getItem("SE_recentLanguages")
-      if(!recentLangs) {
-        recentLangs = [lang]
-      } else {
-        recentLangs = JSON.parse(recentLangs)
-        recentLangs.push(lang)
-        recentLangs = recentLangs.slice(0,9)
-      }
-      localStorage.setItem('SE_recentLanguages', JSON.stringify(recentLangs.reverse()))
-    })
-
-    // search language by html attributes
-    $('.ChatTabContents').off().on("keyup", ".language-search", function() {
-      var value = this.value.toLowerCase().trim();
-      if (value.length >= 1) {
-          var elem = $(this);
-          elem.data('search',  value)
-          .clearQueue().stop()
-          .queue(function() {
-            $(".language-list button").removeClass('hidden').filter(function() {
-                return $(this).attr("data-search").toLowerCase().indexOf(value) === -1;
-            }).addClass('hidden');
-            if (elem.data('search') !=  value) return;
-          });
-      } else if (value.length <= 1) {
-        $(".language-list button").show();
-      }
-    });
-
-    // clear search input
-    $('.ChatTabContents').on('search', '.language-search', function() {
-      if(this.value === "") {
-        $(".language-list button").show()
-      }
-    });
+  // clear search input
+  $('.ChatTabContents').on('search', '.language-search', function() {
+    if(this.value === "") {
+      $(".language-list button").show()
+    }
+  });
 }
 waitForKeyElements(".emojiSelectionModal", modifyEmojiPicker, false);
 function modifyEmojiPicker(el) {
@@ -1111,7 +1128,7 @@ function addAutoTipButton(el) {
   $(document).on('click', function (e) {
     if($(".auto-tip-overlay").length) {
       if (!$('.auto-tip-overlay').is(e.target) && !$('.auto-tip-overlay *').is(e.target) && !$('.auto-tip-button').is(e.target)) {
-        $(".auto-tip-overlay").remove();
+        $(".auto-tip-overlay").remove()
       }
     }
   });
@@ -1379,22 +1396,25 @@ function decodeHtml(html) {
 
 // populate languages to dropdowns and language lists
 function populateLanguageDropdowns() {
-  if($('.language-list:not(.recent)').empty())
-    $.each(iso639_langs, function(key, val) {
-      if(val.active === 1 && !$('.language-list .flag-'+val.name).length) {
-        $('.language-list:not(.recent)').prepend('<button aria-label="'+val.name+'" class="flag flag-'+key+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
-      }
-    })
 
+  // all languages
+  $.each(iso639_langs, function(key, val) {
+    if(val.active === 1 && !$('.language-list .flag-'+val.name).length) {
+      $('.language-list:not(.recent)').append('<button aria-label="'+val.name+'" class="flag flag-'+key+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
+    }
+  })
+
+  // recent languages
   let recent = localStorage.getItem('SE_recentLanguages')
   recent = JSON.parse(recent)
   $.each(recent, function(index, val) {
     key = val
     val = iso639_langs[key]
     if(!$('.language-list.recent .flag-'+key).length) {
-      $('.language-list.recent').prepend('<button aria-label="'+val.name+'" class="flag flag-'+key+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
+      $('.language-list.recent').append('<button aria-label="'+val.name+'" class="flag flag-'+key+'" type="button" title="'+val.name+'" data-search="'+val.name+'|'+val.nativeName+'|'+key+'" data-lang="'+key+'"><svg class="flag flag-'+key+'"><use xlink:href="#'+key+'"></use></svg></button>')
     }
   })
+  $('.language-list.se-loading').removeClass('.se-loading')
 }
 
 // get RoomDossier
