@@ -1,10 +1,24 @@
+var htmlSettingsNotifications = getResource("html/settings-notifications.html");
 
 /**
  * Additional Notifications
  */
 waitForKeyElements(".auto-refill-fieldset + fieldset > table", addAdditionalNotifications, false);
 function addAdditionalNotifications(el) {
-  $(el).after('<div class="se-additional-notifications"><div class="se-title"><h2>Chaturbate Enhanced</h2></div><div class="se-content"><p>Notify Me When Someone I Follow Comes Online...</p><div class="checkbox-wrapper"><div ts="r" class="checkboxComponent transparentCheckbox fieldInput" style="height: 16px; width: 16px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; cursor: pointer;"><input type="checkbox" name="notification_telegram"></div><label class="defaultColor" style="text-align: left; font: 1em / 1.3em UbuntuMedium, Arial, Helvetica, sans-serif; padding: 0px; margin: 0px 4px 6px; width: 100%;">Notify me on Telegram</label></div><div class="checkbox-wrapper"><div ts="r" class="checkboxComponent transparentCheckbox fieldInput" style="height: 16px; width: 16px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; cursor: pointer;"><input type="checkbox" name="notification_whatsapp"></div><label class="defaultColor" style="text-align: left; font: 1em / 1.3em UbuntuMedium, Arial, Helvetica, sans-serif; padding: 0px; margin: 0px 4px 6px; width: 100%;">Notify me on WhatsApp</label></div><div class="checkbox-wrapper"><div ts="r" class="checkboxComponent transparentCheckbox fieldInput" style="height: 16px; width: 16px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; cursor: pointer;"><input type="checkbox" name="notification_whatsapp"></div><label class="defaultColor" style="text-align: left; font: 1em / 1.3em UbuntuMedium, Arial, Helvetica, sans-serif; padding: 0px; margin: 0px 4px 6px; width: 100%;">Notify me on Discord</label></div></div></div>')
+  $(el).after(htmlSettingsNotifications)
+
+  // select all regions
+  $(el).closest('fieldset').on('click', '.se-select-all-regions', function(e) {
+    e.preventDefault()
+    alert("select them all, ash")
+  })
+
+  // select all states
+  $(el).closest('fieldset').on('click', '.se-select-all-states', function(e) {
+    e.preventDefault()
+    alert("select them all, ash2")
+  })
+
 }
 
 

@@ -1,3 +1,6 @@
+/* chaturbate enhanced */
+.logo-zone { position: relative; width: 350px; }
+.logo-zone > strong+strong { padding-left: 17px; position: absolute; bottom: 19px; left: 185px; }    
 .se-hidden, .hidden { display: none !important; }
 .se-invisible { visibility: hidden; pointer-events: none; }
 .se-button-disabled { filter: grayscale(100%); pointer-events: none; opacity: .7; cursor: auto; }
@@ -20,7 +23,7 @@ button + .se-loader { display: none; }
 
 /* filters: favorites */
 .filters-favorites { display: inline-flex; gap: 20px; }
-.filters-favorites .country select { background: #222; border: 1px solid #000; border-radius: 14px; color: #f8f8f8; display: inline-block; height: 30px; line-height: 20px; padding: 7px 14px; transition: 120ms ease-in-out; }
+.filters-favorites .country select { background: #222 !important; border: 1px solid #000; border-radius: 14px; color: #f8f8f8; display: inline-block; height: 30px; line-height: 20px; padding: 7px 14px; transition: 120ms ease-in-out; }
 .filters-favorites .search input, .filters-favorites .search input:focus { background: #222 !important; border-radius: 14px; height: 30px !important; padding: 7px 14px !important; }
 .filters-favorites > div { display: flex; font-size: 13px; gap: 10px; align-items: center; }
 .filters-favorites .model-filter-link { position: relative; padding: 0 4px; }
@@ -39,6 +42,12 @@ button + .se-loader { display: none; }
 #main #roomlist_root .roomlist_container ul.list[data-grid="9"] { grid-template-columns: repeat(9, 1fr); }
 #main #roomlist_root .roomlist_container ul.list[data-grid="10"] { grid-template-columns: repeat(10, 1fr); }
 
+/* genderTab */
+.se-custom-gender-tab { position: relative; }
+.se-custom-gender-tab .se-sub-menu { position: absolute; top: 100%; left: 0; width: 270px; background: #1c2733; display: block; z-index: 1001; height: auto; box-sizing: border-box; border-color: #2d3e50; border-radius: 0px 0px 5px 5px; border-style: none solid solid; border-top-width: initial; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-top-color: initial; font-family: UbuntuBold, Helvetica, Arial, sans-serif; }
+.se-custom-gender-tab.se-open .se-sub-menu { display: block !important; }
+.se-custom-gender-tab .se-sub-menu a:hover { background: #885336 !important; border: 0 !important; color: #fff !important; }
+.se-custom-gender-tab .se-sub-menu a { width: 100%; border: 0; background: none; border-radius: 0 !important }
 
 /* language picker */
 .se-langpicker { position: absolute; top: 6px; left: 2px; z-index: 1; opacity: .6; cursor: pointer; text-align: center; width: 25px; height: 17px; }
@@ -199,6 +208,7 @@ button + .se-loader { display: none; }
 .roomCard .se-more-menu { position: absolute; top: auto; bottom: 0; right: 0; z-index: 2; width: 420px; height: 420px; }
 
 /* misc & needed cb fixes */
+.sub-nav.genderTabs, .sub-nav.followedContainer { overflow: visible !important } /* custom gender tab */
 .roomlist_container ul.list, .roomlist_container .roomCard { overflow: visible !important; } /* model overlay */
 .roomlist_container .roomCard .sub-info { overflow: visible; position: relative; } /* model overlay */
 .content:has(.followRecommendations) .followRecommendations .endless_page_template { grid-template-rows: auto !important; grid-auto-rows: auto !important; }  /* more recommended channels */
