@@ -513,7 +513,7 @@ function translateMainChat(el) {
 /**
  * Disable Chat Notices
  */
-waitForKeyElements(' #TheaterModeRoomContents #ChatTabContainer', addDisableChat, false);
+waitForKeyElements('#TheaterModeRoomContents2 #ChatTabContainer', addDisableChat, false);
 function addDisableChat(el) {
   let modelUsername = $('.activeRoom').text().toLowerCase().split('\'')[0];
   let username = $('.header-sub-item-wrapper .viewcam-profile-menu-item__label').eq(0).text().toLowerCase()
@@ -689,9 +689,9 @@ function addLangDropdownPrivateChats(el) {
 /**
  * Lifecycle: Player started
  */
-waitForKeyElements('.vjs-has-started', showTakeScreenshotButton, false);
-function showTakeScreenshotButton(el) {
-  $('.se-take-screenshot').removeClass('se-hidden') // "Take Screenshot" Button
+waitForKeyElements('#chat-player', showTakeScreenshotButton2, false);
+function showTakeScreenshotButton2(el) {
+  $('.se-take-screenshot').removeClass('se-disabled') // "Take Screenshot" Button
   $('.se-pip').removeClass('se-hidden') // "Picture in Picture" Button
 }
 
@@ -1330,7 +1330,6 @@ function translateGoogle(val, lang, errordiv) {
     // error handling
     $('.model-chat-error').remove()
     if(errordiv && data.error.code) {
-      $('.model-chat-error').remove()
       $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <small><em>'+data.error.message+'</em></small></span></span></div></div></div>')
 
       // close error
@@ -1364,12 +1363,22 @@ function populateLanguageDropdowns() {
 function getRoomDossier(modelUsername) {
   //let roomDossier = Array.from($('body').html().matchAll(/initialRoomDossier = "(.*?)"/g), m => m[1])
   //roomDossier = roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
+  
+  let data = $.getJSON('https://chaturbate.com/api/chatvideocontext/'+modelUsername+'/').fail(function(data) {
+    data = $.parseJSON(data.responseText)
 
-    let furl = 'https://chaturbate.com/api/chatvideocontext/' + modelUsername + '/';
-    roomDossier = $.get(furl)
-    console.log("roomD", furl, roomDossier)
+    // error handling
+    $('.model-chat-error').remove()
+    if(errordiv && data.error.code) {
+      $('.model-chat-error').remove()
+      $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <small><em>'+data.error.message+'</em></small></span></span></div></div></div>')
 
-  return (roomDossier ? roomDossier : false)
+      // close error
+      $('.model-chat-error').on('click', function() { $(this).remove() })
+    }
+  });
+
+  return (data ? data.responseText : false)
 }
 
 // get/set remoteStorage
