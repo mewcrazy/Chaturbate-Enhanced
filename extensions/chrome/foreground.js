@@ -18,6 +18,19 @@ var htmlTranslateButton = '<span class="translate-line"><button class="a11y-butt
 var htmlEnhancedOptions = chrome.runtime.getURL('html/enhanced-options.html')
 var htmlCustomGenderTabs = getResource("html/custom-gender-tabs.html")
 
+/* misc global vars */
+var varDefaultGender = localStorage.getItem('SE_defaultGender')
+
+
+/**
+ * Default Gender
+ */
+waitForKeyElements("#logoLink", defaultGender, false);
+function defaultGender(el) {
+  if(varDefaultGender)
+    $(el).attr('href', $(el).attr('href')+varDefaultGender+'-cams/')
+}
+
 
 /**
  * Move Bottom Tabs to Top Tab Bar
@@ -76,6 +89,7 @@ function addProfileMenuThemes(el) {
   $('.se-theme-select select').on('change', function(e) {
     e.preventDefault
     $('body').attr('class', function(i, c){ return c.replace(/(^|\s)se-theme-\S+/g, '') }).addClass('se-theme-'+$(this).val())
+    localStorage.setItem('SE_FrontendTheme', $(this).val())
   })
 }
 
@@ -86,11 +100,16 @@ function addProfileMenuThemes(el) {
 waitForKeyElements('body.se-page-my-hidden-cams .content_body', showHiddenCamsPage, false);
 function showHiddenCamsPage(el) {
   let htmlTopSection = '<div class="top-section" ts="H" style="padding-left: 15px; padding-right: 16px;"><ul class="advanced-search-button-container" data-paction="Search" style="display: block;"><li class="advanced_search_button_shell"><a class="advanced_search_button" href="#" title="Options" data-testid="advanced-search-button"></a></li><li id="search_container"><div class="SearchInput RoomlistSearchInput" id="SearchInput" ts="m"><form id="filter_search_form" method="GET" action="/"><input type="text" style="display: none;"><input type="password" style="display: none;"><input id="keywords" name="keywords" class="search_input" maxlength="150" placeholder="Search subjects, #tags, or broadcasters" type="text" autocomplete="off" data-listener-count-focus="1" data-listener-count-blur="1" data-listener-count-input="1" data-listener-count-keydown="2" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0); display: none;"><div class="inputDelete" data-listener-count-mousedown="1" style="visibility: hidden; display: none;"></div><div class="suggestionsDiv" ts="z" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none;"></div></form></div><div id="search_icon" class="search_div" tabindex="0" data-listener-count-click="1" data-listener-count-keydown="1"><div><div class="search_svg" title="Search Bar"></div></div></div></li><div data-listener-count-click="1" data-testid="filter-button" class="homepageFilterButton  active" ts="d" style="display: block;"><div class="homepageFiltersIconRoot"><div ts="HomepageFiltersIconWrapper"><div class="HomepageFiltersIcon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 10" role="img"><path fill="#0C6A93" fill-rule="evenodd" d="M0 .75A.75.75 0 0 1 .75 0h10.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 .75m1 4A.75.75 0 0 1 1.75 4h6.5a.75.75 0 0 1 0 1.5h-6.5A.75.75 0 0 1 1 4.75M2.75 8a.75.75 0 0 0 0 1.5h2.5a.75.75 0 0 0 0-1.5z" clip-rule="evenodd"></path></svg></div></div></div><div data-testid="filter-button-text" class="text">Filters</div></div></ul><ul class="sub-nav genderTabs" ts="u" data-userscript-1761263927196-alreadyfound="true"><div ts="k" class="scanNext" data-paction="NextCam" style="height: 27px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; z-index: 1; top: 2px; text-align: right; float: right; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; display: none;"><a ts="m" href="#" class="tabActiveColor transparentBg" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; padding: 7px 3px 7px 5px; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; position: relative; background-color: transparent; right: 5px;"><span data-testid="scan-cams">SCAN CAMS</span></a><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden;"></div><a ts="m" href="#" data-testid="next-cam" class="nextCamBgColor tabBorder tabActiveColor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; line-height: normal; position: relative; border-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; padding: 6px 3px 6px 5px;">NEXT CAM (Ctrl+/)</a><div class="nextCamBgColor tabBorder tabActiveColor dropdown-anchor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" ts="h" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none; cursor: pointer; padding: 4px 6px; text-decoration: none; font-size: 10.008px; position: relative; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; text-align: center; user-select: none; top: 1px;">SCAN / NEXT</div></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-listener-count-click="1" href="https://chaturbate.com/" class="gender-tab active" data-testid="top-section-tab-featured" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1">FEATURED</a></li><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 12px;"></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" href="https://chaturbate.com/female-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">WOMEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-men" data-listener-count-click="1" href="https://chaturbate.com/male-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">MEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-couples" data-listener-count-click="1" href="https://chaturbate.com/couple-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">COUPLES</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-trans" data-listener-count-click="1" href="https://chaturbate.com/trans-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">TRANS</a></li><div ts="d" class="chatAreaTabColor dropdown-anchor gender-tab" data-listener-count-click="1" data-listener-count-keydown="1" style="position: absolute; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 0px 10px; text-align: center; user-select: none; display: none; border-width: 1px; border-style: solid; border-radius: 4px 4px 0px 0px; height: 27px; line-height: 27px; margin-right: 2px; width: 41px;">. . .</div><li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"> <a data-paction="TopTab" data-testid="top-section-tab-women" class="gender-tab tabElement tabElementLink" href="#" style="display: inline-block;">+</a> <div class="se-sub-menu" style="display: none"> <a data-testid="profile-link" href="/my-hidden-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Hidden Cams</a> <a class="se-button-disabled" data-testid="profile-link" href="/banned-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Banned Cams</a></div></li></ul></div>'
+  let htmlViewHiddenCams = getResource('html/view-hidden-cams.html')
 
   // prepare page view
   document.title = 'My Hidden Cams - Chaturbate - 100% Free Chat &amp; Webcams'
   $(el).closest('#main').prepend(htmlTopSection)
-  $(el).empty()
+  
+  // empty page / add html
+  $(el).closest('#main').find('.content').empty().append(htmlViewHiddenCams)
+
+  
 }
 
 
@@ -127,6 +146,10 @@ function addCustomGenderTabs(el) {
       }
     }
   });
+
+  // default gender
+  if(varDefaultGender)
+    $('.genderTabs .gender-tab').find('a[href*="'+varDefaultGender+'"]').prependTo('.genderTabs')
 }
 
 
@@ -284,6 +307,14 @@ function addOptionsMenu(el) {
     localStorage.setItem("SE_"+name, val)
     processOption(name, val)
   })
+
+  // select save option
+  $('.enhanced-options-content').on('change', 'select.se-save-option', function(e) {
+    let name = $(this).attr('name')
+    localStorage.setItem("SE_"+name, $(this).val())
+    processOption(name, $(this).val())
+  })
+  
 }
 
 function processOption(name, val) {
@@ -1328,6 +1359,11 @@ function lifecycleBodyStart(el) {
   let pathname = location.pathname.split('/')[1]
   if(pathname == "") pathname = "home"
   $('body').addClass('se-page-'+pathname)
+
+  // theme preset
+  let theme = localStorage.getItem('SE_FrontendTheme')
+  $('body').attr('class', function(i, c){ return c.replace(/(^|\s)se-theme-\S+/g, '') }).addClass('se-theme-'+theme)
+
 
   // var observer = new MutationObserver(function(e) {
 

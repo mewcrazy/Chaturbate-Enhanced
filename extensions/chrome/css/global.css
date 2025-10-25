@@ -225,13 +225,31 @@ button + .se-loader { display: none; }
 .se-dm-sound-toggle.se-sound-off path { stroke: rgba(255,255,255,.1) }
 .dmWindowHeader > div:first-child { width: calc(100% - 88px) !important; }
 
+/* page: hidden cams */
+.se-page-my-hidden-cams .advanced-search-button-container { position: relative; list-style-type: none; float: right; margin: 0px; padding: 0px; z-index: 2; }
+.se-page-my-hidden-cams li.advanced_search_button_shell { display: block; position: relative;  right: -1px; font: 13px "UbuntuMedium", Arial, Helvetica, sans-serif; float: right; height: 24px; -webkit-text-size-adjust: none; }
+.se-page-my-hidden-cams #search_container { min-width: 20px; min-height: 24px; position: relative; float: right; }
+.se-page-my-hidden-cams #SearchInput.RoomlistSearchInput { top: 3px; z-index: 2; }
+.se-page-my-hidden-cams #search_icon { position: absolute; right: 0; top: 3px; height: 24px; width: 20px; z-index: 2; }
+.se-page-my-hidden-cams #search_icon div { position: relative; top: 5px; left: 3px; width: 12px; }
+.se-page-my-hidden-cams .homepageFilterButton .homepageFiltersIconRoot { float: left; height: 10px; width: 19px; padding-left: 2px; }
+.se-page-my-hidden-cams.darkmode .homepageFilterButton .text { color: #68b5f0; }
+.se-page-my-hidden-cams .homepageFilterButton .homepageFiltersIconRoot { float: left; height: 10px; width: 19px; padding-left: 2px; }
+.se-page-my-hidden-cams .HomepageFiltersIcon { margin: 5px 2px; }
+.se-page-my-hidden-cams .HomepageFiltersIcon svg { width: 12px; height: 12px; }
+.se-page-my-hidden-cams  #main .top-section #search_icon .search_svg, .se-page-my-hidden-cams  #main .headline .buttons #search_icon .search_svg { width: 14px; height: 14px; display: inline-block; position: relative; top: 1px; background-image: url(../../images/search.svg?515fad030780); background-repeat: no-repeat; }
 
 /* theme: halloween */
 .se-theme-halloween .nav-bar { background: #664e2f !important; }
 .se-theme-halloween, .se-theme-halloween #header { background: #ffe1bb !important; }
+.se-theme-halloween #main .top-section, .se-theme-halloween #main .headline .buttons { background: #ffe1bb !important; }
 .se-theme-halloween { background: #eedec1 !important; }
-.se-theme-halloween { color: #121212 !important; }
+.se-theme-halloween, .se-theme-halloween .camBgColor { color: #121212 !important; }
 .se-theme-halloween { background: #fdfaec !important; }
+.se-theme-halloween .camBgColor { background: #664e2f; }
+.se-theme-halloween .gender-tab.active a, .se-theme-halloween .gender-tab a.active, .se-theme-halloween a.gender-tab.active, .se-theme-halloween div.gender-tab.active, .se-theme-halloween .gender-tab a.hover, .se-theme-halloween a.gender-tab.hover, .se-theme-halloween div.gender-tab.hover, .se-theme-halloween #main .top-section .sub-nav li.active a, .se-theme-halloween #main .top-section .sub-nav li a.active, .se-theme-halloween #main .top-section .sub-nav li a.hover, .se-theme-halloween #main .top-section .sub-nav li a:hover:not(.hover-event) { background: #121212 !important; }
+.se-theme-halloween .footer-holder { background: #ffe1bb !important; border-top: 5px solid #121212; }
+.se-theme-halloween .footer-holder h2, .se-theme-halloween .footer-holder .nav li a, .se-theme-halloween .footer-holder ul li a, .se-theme-halloween .footer-holder a, .se-theme-halloween .footer-holder p { color: #121212 !important; }
 
 /* keyframes */
 @keyframes rotate {

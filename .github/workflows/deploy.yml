@@ -49,7 +49,7 @@ jobs:
           git fetch
           git add extensions/chrome/js/waitForKeyElements.min.js
           git add extensions/chrome/js/jquery.min.js
-          git commit -am "${{ 'github.event.head_commit.message' }} [skip ci]"
+          git commit -am '${{ github.event.head_commit.message }} [skip ci]'
           git push -f origin ${{ github.ref }}
 
       # Step 6: Push
