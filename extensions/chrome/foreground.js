@@ -110,14 +110,14 @@ function showHiddenCamsPage(el) {
   $(el).closest('#main').find('.content').empty().append(htmlViewHiddenCams)
 
   // view hidden cams
-  let hiddenCams = ["aalliyahh", "crystalnut", "its_lily"]
+  let hiddenCams = ["its_lily", "aalliyahh", "crystalnut"]
   //let hiddenCams = localStorage.getItem('SE_hiddenCams')
   $.each(hiddenCams, function(k, v) {
 
     // get roomdossier
     let roomDossier = getRoomDossier(v)
-    console.log(roomDossier)
 
+    // modify template
     let tpl = $('.roomCard.se-template').clone()
     tpl.removeClass('se-hidden').removeClass('se-template')
     tpl.find('a[data-room]').attr('data-room', v)
@@ -131,12 +131,10 @@ function showHiddenCamsPage(el) {
     if(roomDossier.broadcaster_gender)
       tpl.find('.age_gender_container .camAltTextColor').addClass('gender'+roomDossier.broadcaster_gender.toString()[0])
     
-    
     // append
     $('.list.endless_page_template').append(tpl)
   })
   if(!hiddenCams || hiddenCams.length === 0) $('.NoSearchResultsMessage').removeClass('NoSearchResultsMessage__hidden')
-  
 }
 
 
@@ -457,14 +455,20 @@ function addModelInfoOverlay(el) {
 }
 waitForKeyElements(".list.endless_page_template", addModelInfoOverlayFncs, false);
 function addModelInfoOverlayFncs(el) {
- 
+  var htmlModelOverlay = '<div class="homepageFilterPanel se-hidden" style="background-color: #202c39; float: left; border: 1; padding-bottom: 40px; position: relative; right: 0;"></div>'
+
   $(el).find('.se-open-overlay').on('click', function(e) {
     let username = $(this).closest('.details').find('.cardTitle a').text().toLowerCase()
 
     // get roomDossier
     let roomDossier = getRoomDossier(username, '.global-toast')
-    console.log("roomdick", roomDossier)
-    $(this).append(htmlModelOverlay)
+
+    // TODO search/replace overlay values
+    
+
+    // append to overlay
+    $('#main > .top-section').after(htmlModelOverlay)
+    $('.homepageFilterPanel').removeClass('se-hidden')
   })
 
 }
@@ -1508,15 +1512,13 @@ function populateLanguageDropdowns() {
 
 // get RoomDossier
 function getRoomDossier(modelUsername, errordiv) {
-  //let roomDossier = Array.from($('body').html().matchAll(/initialRoomDossier = "(.*?)"/g), m => m[1])
-  //roomDossier = roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
-  
-  let data = $.getJSON('https://chaturbate.com/api/chatvideocontext/'+modelUsername+'/').fail(function(data) {
+
+  let res = $.getJSON('https://247camming-api.local.dev/api/chatvideocontext/'+modelUsername).fail(function(data) {
     data = JSON.parse(data.responseText)
 
     // error handling
     $('.model-chat-error').remove()
-    if(errordiv && data.error.code) {
+    if(errordiv && data.error && data.error.code) {
       $('.model-chat-error').remove()
       $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <small><em>'+data.error.message+'</em></small></span></span></div></div></div>')
 
@@ -1525,7 +1527,7 @@ function getRoomDossier(modelUsername, errordiv) {
     }
   });
 
-  return (data ? JSON.parse(data.responseText) : false)
+  return (res ? JSON.parse(res.responseText) : false)
 }
 
 // get/set remoteStorage

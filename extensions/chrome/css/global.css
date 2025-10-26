@@ -242,7 +242,15 @@ button + .se-loader { display: none; }
 .se-page-my-hidden-cams .homepageFilterButton .homepageFiltersIconRoot { float: left; height: 10px; width: 19px; padding-left: 2px; }
 .se-page-my-hidden-cams .HomepageFiltersIcon { margin: 5px 2px; }
 .se-page-my-hidden-cams .HomepageFiltersIcon svg { width: 12px; height: 12px; }
-.se-page-my-hidden-cams  #main .top-section #search_icon .search_svg, .se-page-my-hidden-cams  #main .headline .buttons #search_icon .search_svg { width: 14px; height: 14px; display: inline-block; position: relative; top: 1px; background-image: url(../../images/search.svg?515fad030780); background-repeat: no-repeat; }
+.se-page-my-hidden-cams #main .top-section #search_icon .search_svg, .se-page-my-hidden-cams  #main .headline .buttons #search_icon .search_svg { width: 14px; height: 14px; display: inline-block; position: relative; top: 1px; background-image: url(../../images/search.svg?515fad030780); background-repeat: no-repeat; }
+.se-page-my-hidden-cams .homepageFilterPanel .filterSection { width: 110px; }
+@media (min-width: 500px) {
+  .se-page-my-hidden-cams .homepageFilterPanel .filterSection { width: calc(44.66667vw + -113.33333px); }
+}
+@media (min-width: 800px) {
+  .se-page-my-hidden-cams .homepageFilterPanel .filterSection { width: 244px; }
+}
+.se-page-my-hidden-cams .homepageFilterPanel.se-hidden .filterSection { width: 0; }
 
 /* theme: halloween */
 .se-theme-halloween .nav-bar { background: #664e2f !important; }
