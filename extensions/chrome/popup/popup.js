@@ -19,7 +19,7 @@ $(function() {
     if(!email || !password) { throwError("Please enter your email address and password."); return false;  }
     if(!validateEmail(email)) { throwError("Please enter a valid email address."); return false; }
     
-    SeRequest('https://247camming-2025.local.dev/api/users/login', {"key" : "value"}, function(data) {
+    SeRequest('https://247camming-api.local.dev/users/login', {"email": email, "password": password}, function(data) {
         console.log("sign in data : %o", data);
     });
     return false
@@ -34,7 +34,7 @@ $(function() {
     if(!email || !password) { throwError("Please enter your email address and password."); return false;  }
     if(!validateEmail(email)) { throwError("Please enter a valid email address."); return false; }
     
-    SeRequest('https://247camming-2025.local.dev/api/users/register', {"email" : email, "password": password}, (data) => {
+    SeRequest('https://247camming-api.local.dev/users/register', {"email" : email, "password": password}, (data) => {
         console.log("sign in data : %o", data);
     });
   })
@@ -47,7 +47,7 @@ $(function() {
     if(!email) { throwError("Please enter a valid email address."); return false;  }
     if(!validateEmail(email)) { throwError("Please enter a valid email address."); return false; }
     
-    SeRequest('https://247camming-2025.local.dev/api/users/forget-password', {"key" : "value"}, function(data) {
+    SeRequest('https://247camming-api.local.dev/users/forget-password', {"key" : "value"}, function(data) {
         console.log("forget password data : %o", data);
     });
   })

@@ -97,9 +97,9 @@ function addProfileMenuThemes(el) {
 /**
  * Custom Page: Hidden Cams
  */
-waitForKeyElements('body.se-page-my-hidden-cams .content_body', showHiddenCamsPage, false);
+waitForKeyElements('body.se-page-my-hidden-cams #main .content_body', showHiddenCamsPage, false);
 function showHiddenCamsPage(el) {
-  let htmlTopSection = '<div class="top-section" ts="H" style="padding-left: 15px; padding-right: 16px;"><ul class="advanced-search-button-container" data-paction="Search" style="display: block;"><li class="advanced_search_button_shell"><a class="advanced_search_button" href="#" title="Options" data-testid="advanced-search-button"></a></li><li id="search_container"><div class="SearchInput RoomlistSearchInput" id="SearchInput" ts="m"><form id="filter_search_form" method="GET" action="/"><input type="text" style="display: none;"><input type="password" style="display: none;"><input id="keywords" name="keywords" class="search_input" maxlength="150" placeholder="Search subjects, #tags, or broadcasters" type="text" autocomplete="off" data-listener-count-focus="1" data-listener-count-blur="1" data-listener-count-input="1" data-listener-count-keydown="2" style="-webkit-tap-highlight-color: rgba(255, 255, 255, 0); display: none;"><div class="inputDelete" data-listener-count-mousedown="1" style="visibility: hidden; display: none;"></div><div class="suggestionsDiv" ts="z" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none;"></div></form></div><div id="search_icon" class="search_div" tabindex="0" data-listener-count-click="1" data-listener-count-keydown="1"><div><div class="search_svg" title="Search Bar"></div></div></div></li><div data-listener-count-click="1" data-testid="filter-button" class="homepageFilterButton  active" ts="d" style="display: block;"><div class="homepageFiltersIconRoot"><div ts="HomepageFiltersIconWrapper"><div class="HomepageFiltersIcon"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 12 10" role="img"><path fill="#0C6A93" fill-rule="evenodd" d="M0 .75A.75.75 0 0 1 .75 0h10.5a.75.75 0 0 1 0 1.5H.75A.75.75 0 0 1 0 .75m1 4A.75.75 0 0 1 1.75 4h6.5a.75.75 0 0 1 0 1.5h-6.5A.75.75 0 0 1 1 4.75M2.75 8a.75.75 0 0 0 0 1.5h2.5a.75.75 0 0 0 0-1.5z" clip-rule="evenodd"></path></svg></div></div></div><div data-testid="filter-button-text" class="text">Filters</div></div></ul><ul class="sub-nav genderTabs" ts="u" data-userscript-1761263927196-alreadyfound="true"><div ts="k" class="scanNext" data-paction="NextCam" style="height: 27px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; z-index: 1; top: 2px; text-align: right; float: right; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; display: none;"><a ts="m" href="#" class="tabActiveColor transparentBg" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; padding: 7px 3px 7px 5px; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; position: relative; background-color: transparent; right: 5px;"><span data-testid="scan-cams">SCAN CAMS</span></a><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden;"></div><a ts="m" href="#" data-testid="next-cam" class="nextCamBgColor tabBorder tabActiveColor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; line-height: normal; position: relative; border-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; padding: 6px 3px 6px 5px;">NEXT CAM (Ctrl+/)</a><div class="nextCamBgColor tabBorder tabActiveColor dropdown-anchor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" ts="h" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none; cursor: pointer; padding: 4px 6px; text-decoration: none; font-size: 10.008px; position: relative; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; text-align: center; user-select: none; top: 1px;">SCAN / NEXT</div></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-listener-count-click="1" href="https://chaturbate.com/" class="gender-tab active" data-testid="top-section-tab-featured" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1">FEATURED</a></li><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 12px;"></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" href="https://chaturbate.com/female-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">WOMEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-men" data-listener-count-click="1" href="https://chaturbate.com/male-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">MEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-couples" data-listener-count-click="1" href="https://chaturbate.com/couple-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">COUPLES</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-trans" data-listener-count-click="1" href="https://chaturbate.com/trans-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">TRANS</a></li><div ts="d" class="chatAreaTabColor dropdown-anchor gender-tab" data-listener-count-click="1" data-listener-count-keydown="1" style="position: absolute; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 0px 10px; text-align: center; user-select: none; display: none; border-width: 1px; border-style: solid; border-radius: 4px 4px 0px 0px; height: 27px; line-height: 27px; margin-right: 2px; width: 41px;">. . .</div><li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"> <a data-paction="TopTab" data-testid="top-section-tab-women" class="gender-tab tabElement tabElementLink" href="#" style="display: inline-block;">+</a> <div class="se-sub-menu" style="display: none"> <a data-testid="profile-link" href="/my-hidden-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Hidden Cams</a> <a class="se-button-disabled" data-testid="profile-link" href="/banned-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Banned Cams</a></div></li></ul></div>'
+  let htmlTopSection = '<div class="top-section" ts="H" style="padding-left: 15px; padding-right: 16px;"><ul class="sub-nav genderTabs" ts="u" data-userscript-1761263927196-alreadyfound="true"><div ts="k" class="scanNext" data-paction="NextCam" style="height: 27px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; z-index: 1; top: 2px; text-align: right; float: right; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; display: none;"><a ts="m" href="#" class="tabActiveColor transparentBg" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; padding: 7px 3px 7px 5px; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; position: relative; background-color: transparent; right: 5px;"><span data-testid="scan-cams">SCAN CAMS</span></a><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden;"></div><a ts="m" href="#" data-testid="next-cam" class="nextCamBgColor tabBorder tabActiveColor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; line-height: normal; position: relative; border-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; padding: 6px 3px 6px 5px;">NEXT CAM (Ctrl+/)</a><div class="nextCamBgColor tabBorder tabActiveColor dropdown-anchor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" ts="h" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none; cursor: pointer; padding: 4px 6px; text-decoration: none; font-size: 10.008px; position: relative; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; text-align: center; user-select: none; top: 1px;">SCAN / NEXT</div></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-listener-count-click="1" href="https://chaturbate.com/" class="gender-tab" data-testid="top-section-tab-featured" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1">FEATURED</a></li><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 12px;"></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" href="https://chaturbate.com/female-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">WOMEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-men" data-listener-count-click="1" href="https://chaturbate.com/male-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">MEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-couples" data-listener-count-click="1" href="https://chaturbate.com/couple-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">COUPLES</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-trans" data-listener-count-click="1" href="https://chaturbate.com/trans-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">TRANS</a></li><div ts="d" class="chatAreaTabColor dropdown-anchor gender-tab" data-listener-count-click="1" data-listener-count-keydown="1" style="position: absolute; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 0px 10px; text-align: center; user-select: none; display: none; border-width: 1px; border-style: solid; border-radius: 4px 4px 0px 0px; height: 27px; line-height: 27px; margin-right: 2px; width: 41px;">. . .</div><li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"> <a data-paction="TopTab" data-testid="top-section-tab-women" class="gender-tab tabElement tabElementLink" href="#" style="display: inline-block;">+</a> <div class="se-sub-menu" style="display: none"> <a data-testid="profile-link" href="/my-hidden-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Hidden Cams</a> <a class="se-button-disabled" data-testid="profile-link" href="/banned-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Banned Cams</a></div></li></ul></div>'
   let htmlViewHiddenCams = getResource('html/view-hidden-cams.html')
 
   // prepare page view
@@ -109,6 +109,33 @@ function showHiddenCamsPage(el) {
   // empty page / add html
   $(el).closest('#main').find('.content').empty().append(htmlViewHiddenCams)
 
+  // view hidden cams
+  let hiddenCams = ["aalliyahh", "crystalnut", "its_lily"]
+  //let hiddenCams = localStorage.getItem('SE_hiddenCams')
+  $.each(hiddenCams, function(k, v) {
+
+    // get roomdossier
+    let roomDossier = getRoomDossier(v)
+    console.log(roomDossier)
+
+    let tpl = $('.roomCard.se-template').clone()
+    tpl.removeClass('se-hidden').removeClass('se-template')
+    tpl.find('a[data-room]').attr('data-room', v)
+    tpl.find('.age').text(roomDossier.age)
+    tpl.find('.room_thumbnail_container').attr('href', '/'+v+'/')
+    tpl.find('.cardTitle a').text(v).attr('href', '/'+v+'/')
+    tpl.find('img').attr('src', 'https://jpeg.live.mmcdn.com/minifwap/'+v+'.jpg')
+    tpl.find('.cams .viewers').text((roomDossier.num_viewers ? roomDossier.num_viewers+' viewers' : "Offline"))
+    if(roomDossier.following) { tpl.find('.follow_star').addClass('icon_following') } else { tpl.find('.follow_star').addClass('icon_not_following') }
+    tpl.find('.subject span').text(roomDossier.room_title)
+    if(roomDossier.broadcaster_gender)
+      tpl.find('.age_gender_container .camAltTextColor').addClass('gender'+roomDossier.broadcaster_gender.toString()[0])
+    
+    
+    // append
+    $('.list.endless_page_template').append(tpl)
+  })
+  if(!hiddenCams || hiddenCams.length === 0) $('.NoSearchResultsMessage').removeClass('NoSearchResultsMessage__hidden')
   
 }
 
@@ -133,9 +160,12 @@ function addCustomGenderTabs(el) {
   }
 
   // open submenu toggle
-  $('.se-custom-gender-tab > a').on('click', function(e) {
+  $('.se-custom-gender-tab > a').on('auxclick', (e) => { if(e.button === 1) e.preventDefault() })
+  $('.se-custom-gender-tab > a').on('mouseup', function(e) {
     e.preventDefault
-    $(this).parent().toggleClass('se-open')
+    if( e.which <= 2 ) {
+      $(this).parent().toggleClass('se-open')
+    }
   })
 
   // close submenu on outside click
@@ -162,6 +192,11 @@ function viewBannedRoom(el) {
 
   // append
   $(el).parent().append(getResource('html/view-banned-room.html'))
+
+  let bannedRooms = localStorage.getItem('bannedRooms')
+  $.each(bannedRooms, function(k, v) {
+    
+  })
 
   $('.se-follow-enhanced').on('click', function(e) {
     e.preventDefault;
@@ -413,18 +448,22 @@ function addMessageTemplates(el) {
  */
 waitForKeyElements(".roomCard", addModelInfoOverlay, false);
 function addModelInfoOverlay(el) {
+
+  // add modal toggle button
   if(!$(el).hasClass('se-processed')) {
-    $(el).find('.sub-info').append('<li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="#fff"/></svg></li>')
+    $(el).find('.sub-info').append('<li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="currentColor"/></svg></li>')
+    $(el).addClass('se-processed')
   }
-  $(el).addClass('se-processed')
 }
 waitForKeyElements(".list.endless_page_template", addModelInfoOverlayFncs, false);
 function addModelInfoOverlayFncs(el) {
  
   $(el).find('.se-open-overlay').on('click', function(e) {
-    
+    let username = $(this).closest('.details').find('.cardTitle a').text().toLowerCase()
+
     // get roomDossier
-    //let roomDossier = getRoomDossier()
+    let roomDossier = getRoomDossier(username, '.global-toast')
+    console.log("roomdick", roomDossier)
     $(this).append(htmlModelOverlay)
   })
 
@@ -432,23 +471,41 @@ function addModelInfoOverlayFncs(el) {
 
 
 /**
- * Hide Chat Rooms
+ * Hide Chat Rooms (Player Title Bar)
  */
 waitForKeyElements(".playerTitleBar .reportAbuseLink", hideChatRooms, false);
 function hideChatRooms(el) {
 
-  setTimeout(() => {
-    if(!$('.se-hide-room').length) {
-      $('.reportAbuseLink').after('<div class="se-hide-room reportAbuseLink"><a class="SeHideRoom reportRoom" data-testid="hide-room-button" data-paction="HideRoom">Hide Room</a></div>')
+    if(!$(el).siblings('.se-hide-room').length) {
+        $(el).after('<div class="se-hide-room reportAbuseLink"><a class="SeHideRoom reportRoom" data-testid="hide-room-button" data-paction="HideRoom">Hide Room</a></div>')
+        
+        $('.playerTitleBar .se-hide-room').off().on('click', function(e) {
+          let username = $('.activeRoom').text().toLowerCase().split("'")[0]
+          seHideRoom(username)
+        })
     }
-  }, 500);
+}
 
-  $('.se-hide-room').on('click', function(e) {
+/**
+ * Hide Chat Rooms (Room Card)
+ */
+waitForKeyElements("#roomlist_content_wrapper", hideChatRoomsListing, false);
+function hideChatRoomsListing(el) {
 
+  if(!$('.se-hide-room').length) {
+    $(el).find('.roomCard .sub-info').append('<li class="se-hide-room"><svg width="1em" height="1em" viewBox="0 0 12 12" role="img"><path fill="currentColor" d="M7.15 6.092a.125.125 0 0 1 0-.177l4.631-4.63A.75.75 0 1 0 10.72.223L6.09 4.853a.125.125 0 0 1-.178 0L1.281.223A.75.75 0 0 0 .218 1.285l4.63 4.631a.125.125 0 0 1 0 .177L.22 10.724a.749.749 0 0 0 .531 1.28.75.75 0 0 0 .53-.22l4.631-4.631a.125.125 0 0 1 .177 0l4.631 4.631a.75.75 0 0 0 1.061-1.06z"></path></svg></li>')
+
+    $('.roomCard .se-hide-room').on('click', function(e) {
+      let username = $(this).closest('.details').find('.cardTitle a').text().trim()
+      seHideRoom(username)
+    })
+  }
+}
+function seHideRoom(username) {
+  
     if (confirm("Do you really want to block this room? It will be only visible on the Hidden Rooms page after blocking it.") == true) {
       
       // append username to localStorage
-      let username = $('.activeRoom').text().toLowercase().split("'")[0]
       let hiddenRooms = localStorage.getItem("SE_hiddenRooms")
       if(!hiddenRooms) {
         hiddenRooms = [username]
@@ -457,17 +514,13 @@ function hideChatRooms(el) {
         hiddenRooms.push(username);
       }
       localStorage.setItem('SE_hiddenRooms', JSON.stringify(hiddenRooms))
-
-      // go to last page
-      window.location.href = "/"
+      
+      // remove model card & redirect if model page
+      $('.roomCard a[data-room="'+username+'"]').parent().remove()
+      if($('.playerTitleBar .se-hide-room').length)
+        window.location.href = "/"
     }
-  })
 }
-//waitForKeyElements(".roomCard .se-hide-room", hideChatRooms, false);
-//function hideChatRooms(el) {
-//  
-//}
-
 
 
 /**
@@ -1370,7 +1423,7 @@ function lifecycleBodyStart(el) {
   // });
   // observer.observe($('.list.endless_page_template')[0], {characterData: true, childList: true, subtree: true});
   // SE Follows
-  // $('.list.endless_page_template').append('<li class="roomCard camBgColor se-roomcard" data-testid="room-card" ts="f"><a href="#" data-room-nav="true" data-room="username" class="room_thumbnail_container"><img width="180" height="101" src="https://jpeg.live.mmcdn.com/minifwap/lizeth_salazar.jpg?f=0.2622172719922623" data-testid="room-card-image" alt="lizeth_salazar" data-room-nav="true" data-wide-image="true" class="room_thumbnail"></a><div class="labelContainer"><div class="thumbnail_label" data-testid="thumbnail-label"></div></div><div class="details" ts="w"><div class="cardTitle title"><a href="/lizeth_salazar/" data-room="lizeth_salazar" data-room-nav="true" data-testid="room-card-username" data-listener-count-click="1">lizeth_salazar</a><div class="age_gender_container"><span class="age" data-testid="room-card-age">20</span><span class="camAltTextColor genderf" title="Female" data-testid="room-card-gender"></span><span class="thumbnail_flag" data-testid="room-card-thumbnail-flag"><div ts="FlagIconWrapper"><span data-testid="room-card-country" class="fi fi-co" title="Colombia"></span></div></span></div></div><ul class="subject camSubjectColor" title="fuck my pussy wet at goal @200 #bigboobs #latina #teen #lovense #cute [0 tokens remaining]" ts="y"><li>fuck my pussy wet at goal @200 <a href="https://chaturbate.com/followed-cams/?tag=bigboobs" class="camSubjectTagColor" data-listener-count-click="1">#bigboobs</a> <a href="https://chaturbate.com/followed-cams/?tag=latina" class="camSubjectTagColor" data-listener-count-click="1">#latina</a> <a href="https://chaturbate.com/followed-cams/?tag=teen" class="camSubjectTagColor" data-listener-count-click="1">#teen</a> <a href="https://chaturbate.com/followed-cams/?tag=lovense" class="camSubjectTagColor" data-listener-count-click="1">#lovense</a> <a href="https://chaturbate.com/followed-cams/?tag=cute" class="camSubjectTagColor" data-listener-count-click="1">#cute</a> [0 tokens remaining]</li></ul><ul class="sub-info camAltTextColor"><li class="location" data-testid="room-card-location" style="white-space: nowrap;">Colombia</li><li class="cams " style="white-space: nowrap;"><span class="time">3.3 hrs</span><span class="comma">, </span><span class="viewers">8 viewers</span></li><li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="#fff"></path></svg></li></ul></div><div data-slug="lizeth_salazar" data-testid="follow-star" class="follow_star icon_following" title="Unfollow" ts="c"></div></li>')
+  // $('.list.endless_page_template').append('<li class="roomCard camBgColor se-roomcard" data-testid="room-card" ts="f"><a href="#" data-room-nav="true" data-room="username" class="room_thumbnail_container"><img width="180" height="101" src="https://jpeg.live.mmcdn.com/minifwap/lizeth_salazar.jpg?f=0.2622172719922623" data-testid="room-card-image" alt="lizeth_salazar" data-room-nav="true" data-wide-image="true" class="room_thumbnail"></a><div class="labelContainer"><div class="thumbnail_label" data-testid="thumbnail-label"></div></div><div class="details" ts="w"><div class="cardTitle title"><a href="/lizeth_salazar/" data-room="lizeth_salazar" data-room-nav="true" data-testid="room-card-username" data-listener-count-click="1">lizeth_salazar</a><div class="age_gender_container"><span class="age" data-testid="room-card-age">20</span><span class="camAltTextColor genderf" title="Female" data-testid="room-card-gender"></span><span class="thumbnail_flag" data-testid="room-card-thumbnail-flag"><div ts="FlagIconWrapper"><span data-testid="room-card-country" class="fi fi-co" title="Colombia"></span></div></span></div></div><ul class="subject camSubjectColor" title="fuck my pussy wet at goal @200 #bigboobs #latina #teen #lovense #cute [0 tokens remaining]" ts="y"><li>fuck my pussy wet at goal @200 <a href="https://chaturbate.com/followed-cams/?tag=bigboobs" class="camSubjectTagColor" data-listener-count-click="1">#bigboobs</a> <a href="https://chaturbate.com/followed-cams/?tag=latina" class="camSubjectTagColor" data-listener-count-click="1">#latina</a> <a href="https://chaturbate.com/followed-cams/?tag=teen" class="camSubjectTagColor" data-listener-count-click="1">#teen</a> <a href="https://chaturbate.com/followed-cams/?tag=lovense" class="camSubjectTagColor" data-listener-count-click="1">#lovense</a> <a href="https://chaturbate.com/followed-cams/?tag=cute" class="camSubjectTagColor" data-listener-count-click="1">#cute</a> [0 tokens remaining]</li></ul><ul class="sub-info camAltTextColor"><li class="location" data-testid="room-card-location" style="white-space: nowrap;">Colombia</li><li class="cams " style="white-space: nowrap;"><span class="time">3.3 hrs</span><span class="comma">, </span><span class="viewers">8 viewers</span></li><li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="currentColor"></path></svg></li></ul></div><div data-slug="lizeth_salazar" data-testid="follow-star" class="follow_star icon_following" title="Unfollow" ts="c"></div></li>')
 }
 
 /**
@@ -1454,12 +1507,12 @@ function populateLanguageDropdowns() {
 }
 
 // get RoomDossier
-function getRoomDossier(modelUsername) {
+function getRoomDossier(modelUsername, errordiv) {
   //let roomDossier = Array.from($('body').html().matchAll(/initialRoomDossier = "(.*?)"/g), m => m[1])
   //roomDossier = roomDossier[0].replaceAll("\\u0022", "\"").replaceAll("\\u003C", "\<").replaceAll("\\u002D", "-").replaceAll("\\u003D", "=").replaceAll("\\u005C", "\\").replaceAll("\\u0026", "&").replaceAll("\\u0026", "&").replaceAll("\\ud83c", ".")
   
   let data = $.getJSON('https://chaturbate.com/api/chatvideocontext/'+modelUsername+'/').fail(function(data) {
-    data = $.parseJSON(data.responseText)
+    data = JSON.parse(data.responseText)
 
     // error handling
     $('.model-chat-error').remove()
@@ -1472,7 +1525,7 @@ function getRoomDossier(modelUsername) {
     }
   });
 
-  return (data ? data.responseText : false)
+  return (data ? JSON.parse(data.responseText) : false)
 }
 
 // get/set remoteStorage

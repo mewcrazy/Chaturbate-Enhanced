@@ -204,10 +204,15 @@ button + .se-loader { display: none; }
 .se-langpicker[data-active=""] + .chat-input-form > [class*="is-in"] { left: 27px; }
 
 /* hide room */
-.se-hide-room { margin-right: 7px; }
+.playerTitleBar .se-hide-room { margin-right: 7px; }
+.roomCard .se-hide-room { padding: 0; position: absolute; bottom: 5px; right: -4px; width: 12px; height: 12px; cursor: pointer; overflow: visible; }
+.roomCard .se-hide-room svg { fill: rgba(255,255,255,.7) }
+.roomCard .se-hide-room:hover svg { fill: #fff }
 
 /* model overlay */
-.roomCard .se-open-overlay { padding: 0; position: absolute; bottom: 5px; right: -4px; width: 12px; height: 12px; cursor: pointer; overflow: visible; }
+.roomCard .se-open-overlay { padding: 0; position: absolute; bottom: 5px; right: 16px; width: 12px; height: 12px; cursor: pointer; overflow: visible; }
+.roomCard .se-open-overlay svg { fill: rgba(255,255,255,.7) }
+.roomCard .se-open-overlay:hover svg { fill: #fff }
 .roomCard .se-more-menu { position: absolute; top: auto; bottom: 0; right: 0; z-index: 2; width: 420px; height: 420px; }
 
 /* misc & needed cb fixes */
@@ -250,6 +255,10 @@ button + .se-loader { display: none; }
 .se-theme-halloween .gender-tab.active a, .se-theme-halloween .gender-tab a.active, .se-theme-halloween a.gender-tab.active, .se-theme-halloween div.gender-tab.active, .se-theme-halloween .gender-tab a.hover, .se-theme-halloween a.gender-tab.hover, .se-theme-halloween div.gender-tab.hover, .se-theme-halloween #main .top-section .sub-nav li.active a, .se-theme-halloween #main .top-section .sub-nav li a.active, .se-theme-halloween #main .top-section .sub-nav li a.hover, .se-theme-halloween #main .top-section .sub-nav li a:hover:not(.hover-event) { background: #121212 !important; }
 .se-theme-halloween .footer-holder { background: #ffe1bb !important; border-top: 5px solid #121212; }
 .se-theme-halloween .footer-holder h2, .se-theme-halloween .footer-holder .nav li a, .se-theme-halloween .footer-holder ul li a, .se-theme-halloween .footer-holder a, .se-theme-halloween .footer-holder p { color: #121212 !important; }
+
+/* terms */
+#entrance_terms_overlay { display: none; }
+
 
 /* keyframes */
 @keyframes rotate {
