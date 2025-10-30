@@ -14,6 +14,7 @@
 - Translate chat messages & direct messages on-the-fly in over different 100 languages with 1-click
 - Chat Message Templates (no need to type everything again and again)
 - Sound Notifications on new Direct Messages
+- Preview all Thumbnail Videos with 1-click
 - Filter your followed rooms by country, age, private prices and more
 - Save Chaturbate Screenshots with 1-click
 - Picture in Picture Mode & Open Fullscreen with middle click as well as double click
