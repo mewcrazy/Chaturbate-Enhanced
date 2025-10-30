@@ -99,15 +99,15 @@ function addProfileMenuThemes(el) {
 waitForKeyElements('.homepageFilterButton', addPlayAllThumbnails, false);
 function addPlayAllThumbnails(el) {
   
+  // append toggle switch
+  $(el).after('<li class="se-switcher switch-preview-all"><span>Preview All</span><div class="toggle"><input name="SE_previewAll" type="checkbox" id="mode-toggle" value="1" class="toggle__input"><label for="mode-toggle" class="toggle__label"></label></div></li>')
+
   // play all thumbnails
   if(!localStorage.getItem('SE_previewAll')) {
     initPlayAllThumbnails()
-    $('.switch-dnd-mode .switcher').toggleClass("on")
-    $('.switch-dnd-mode input[type="checkbox"]').prop('checked', true)
+    $('.switch-preview-all .switcher').toggleClass("on")
+    $('.switch-preview-all input[type="checkbox"]').prop('checked', true)
   }
-
-  // append toggle switch
-  $(el).after('<li class="se-switcher switch-preview-all"><span>Preview All</span><div class="toggle"><input name="SE_previewAll" type="checkbox" id="mode-toggle" value="1" class="toggle__input"><label for="mode-toggle" class="toggle__label"></label></div></li>')
 
   // toggle switch event handler
   $('.switch-preview-all').on('click', function(e) {
