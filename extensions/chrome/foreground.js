@@ -93,13 +93,142 @@ function addProfileMenuThemes(el) {
   })
 }
 
+/**
+ * Play All Thumbnails
+ */
+waitForKeyElements('.homepageFilterButton', addPlayAllThumbnails, false);
+function addPlayAllThumbnails(el) {
+  
+  // play all thumbnails
+  if(!localStorage.getItem('SE_previewAll'))
+    initPlayAllThumbnails()
+
+  $(el).after('<li class="se-switcher switch-preview-all"><span>Preview All</span><div class="toggle"><input name="SE_previewAll" type="checkbox" id="mode-toggle" value="1" class="toggle__input"><label for="mode-toggle" class="toggle__label"></label></div></li>')
+  
+  $('.switch-preview-all').on('click', function(e) {
+    if(!$(this).find('input').prop('checked')) {
+      initPlayAllThumbnails()
+    } else {
+      $('.roomCard.camBgColor').each((k, v) => { v.dispatchEvent(new MouseEvent('mouseleave', { 'bubbles': true })) })
+    }
+  })
+}
+$(document).on('scroll', () => {
+
+  // fire on scroll
+  if(!localStorage.getItem('SE_previewAll'))
+    initPlayAllThumbnails()
+})
+function initPlayAllThumbnails() {
+
+  $('.roomCard.camBgColor').each((k, v) => {
+    if(isVisibleInViewport($(v).find('.room_thumbnail')[0])) {
+      v.dispatchEvent(new MouseEvent('mouseenter', { 'view': window, 'bubbles': true, 'cancelable': true }));
+    } else {
+      v.dispatchEvent(new MouseEvent('mouseleave', { 'bubbles': true }));
+    }
+  })
+}
+
+
+/**
+ * Additional Avatar Info
+ */
+waitForKeyElements('.right_section', addAvatarInfo, false);
+function addAvatarInfo(el) {
+  $(el).prepend('<div id="user_information" data-paction="UserInfoPanel" data-testid="user-info-panel" style="margin-right: 15px;"> <div id="user_information_header" class="user_information_header"><div id="user_information_profile_container" class="se-avatar-header user_information_container dropdown-anchor"><span class="user_information_header_username" title="Account Menu" data-testid="username">Channel Stats</span></div><div class="bottom"> <table width="100%"> <tbody><tr> <th>Rating:</th> <td title="Rating" data-testid="rating">+ 5 stars -</td> <td>&nbsp;</td> </tr> <tr> <th>Followers:</th> <td> <div class="overflow"> <strong> <a href="/accounts/followers/" class="tokencountlink" title="Follower count" data-testid="follower-count-link"> <span class="followercount tokencount" title="Follower Count" data-testid="follower-count">333.333</span></a> <span class="se-avg-24hrs plus">+400</span></strong></div></td><td></td></tr></tbody></table></div></div>')
+}
+
+
+/**
+ * Custom Page: Banned Cams
+ */
+waitForKeyElements('body.se-page-banned-cams #main .content_body', showBannedCamsPage, false);
+function showBannedCamsPage(el) {
+  let htmlTopSection = '<div class="top-section" ts="H" style="padding-left: 15px; padding-right: 16px;"><ul class="sub-nav genderTabs" ts="u" data-userscript-1761263927196-alreadyfound="true"><div ts="k" class="scanNext" data-paction="NextCam" style="height: 27px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; z-index: 1; top: 2px; text-align: right; float: right; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; display: none;"><a ts="m" href="#" class="tabActiveColor transparentBg" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; padding: 7px 3px 7px 5px; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; position: relative; background-color: transparent; right: 5px;"><span data-testid="scan-cams">SCAN CAMS</span></a><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden;"></div><a ts="m" href="#" data-testid="next-cam" class="nextCamBgColor tabBorder tabActiveColor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; line-height: normal; position: relative; border-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; padding: 6px 3px 6px 5px;">NEXT CAM (Ctrl+/)</a><div class="nextCamBgColor tabBorder tabActiveColor dropdown-anchor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" ts="h" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none; cursor: pointer; padding: 4px 6px; text-decoration: none; font-size: 10.008px; position: relative; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; text-align: center; user-select: none; top: 1px;">SCAN / NEXT</div></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-listener-count-click="1" href="https://chaturbate.com/" class="gender-tab" data-testid="top-section-tab-featured" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1">FEATURED</a></li><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 12px;"></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" href="https://chaturbate.com/female-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">WOMEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-men" data-listener-count-click="1" href="https://chaturbate.com/male-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">MEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-couples" data-listener-count-click="1" href="https://chaturbate.com/couple-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">COUPLES</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-trans" data-listener-count-click="1" href="https://chaturbate.com/trans-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">TRANS</a></li><div ts="d" class="chatAreaTabColor dropdown-anchor gender-tab" data-listener-count-click="1" data-listener-count-keydown="1" style="position: absolute; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 0px 10px; text-align: center; user-select: none; display: none; border-width: 1px; border-style: solid; border-radius: 4px 4px 0px 0px; height: 27px; line-height: 27px; margin-right: 2px; width: 41px;">. . .</div><li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"> <a data-paction="TopTab" data-testid="top-section-tab-women" class="gender-tab tabElement tabElementLink" href="#" style="display: inline-block;">+</a> <div class="se-sub-menu" style="display: none"> <a data-testid="profile-link" href="/my-hidden-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Hidden Cams</a> <a data-testid="profile-link" href="/banned-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Banned Cams</a></div></li></ul></div>'
+  let htmlViewBannedCams = getResource('html/view-hidden-cams.html')
+
+  // prepare page view
+  document.title = 'My Banned Cams - Chaturbate - 100% Free Chat &amp; Webcams'
+  $(el).closest('#main').prepend(htmlTopSection)
+  
+  // empty page / add html
+  $(el).closest('#main').find('.content').empty().append(htmlViewBannedCams)
+
+  //let rooms = getChaturbateOnlinerooms('?wm=HjEmw&client_ip=request_ip')
+  
+  let res = $.getJSON('https://chaturbate.com/api/public/affiliates/onlinerooms/?wm=HjEmw&client_ip=request_ip&limit=500')
+    .done(function(data) {
+      console.log(data)
+      
+      $.each(data.results, function(k, v) {
+        console.log(k, v)
+
+        // get roomdossier
+        let roomDossier = getRoomDossier(v)
+
+        // modify template
+        let tpl = $('.roomCard.se-template').clone()
+        tpl.removeClass('se-hidden').removeClass('se-template')
+        tpl.find('a[data-room]').attr('data-room', v)
+        tpl.find('.age').text(roomDossier.age)
+        tpl.find('.room_thumbnail_container').attr('href', '/'+v+'/')
+        tpl.find('.cardTitle a').text(v).attr('href', '/'+v+'/')
+        tpl.find('img').attr('src', 'https://jpeg.live.mmcdn.com/minifwap/'+v+'.jpg')
+        tpl.find('.cams .viewers').text((roomDossier.num_viewers ? roomDossier.num_viewers+' viewers' : "Offline"))
+        if(roomDossier.following) { tpl.find('.follow_star').addClass('icon_following') } else { tpl.find('.follow_star').addClass('icon_not_following') }
+        tpl.find('.subject span').text(roomDossier.room_title)
+        if(roomDossier.broadcaster_gender)
+          tpl.find('.age_gender_container .camAltTextColor').addClass('gender'+roomDossier.broadcaster_gender.toString()[0])
+        
+        // append
+        $('.list.endless_page_template').append(tpl)
+      })
+    })
+    .fail(function(data) {
+      data = JSON.parse(data.responseText)
+
+      // error handling
+      $('.model-chat-error').remove()
+      if(errordiv && data.error && data.error.code) {
+        $('.model-chat-error').remove()
+        $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <small><em>'+data.error.message+'</em></small></span></span></div></div></div>')
+
+        // close error
+        $('.model-chat-error').on('click', function() { $(this).remove() })
+      }
+  })
+  console.log(res)
+
+  
+}
+function getChaturbateOnlinerooms(params) {
+  
+  let res = $.getJSON('https://chaturbate.com/api/public/affiliates/onlinerooms/'+params).fail(function(data) {
+    data = JSON.parse(data.responseText)
+
+    // error handling
+    $('.model-chat-error').remove()
+    if(errordiv && data.error && data.error.code) {
+      $('.model-chat-error').remove()
+      $(errordiv).append('<div class="model-chat-error"><div class="group-show-in-progress-message m-bg-error message message-base system-text-message system-text-message-error"><div class="message-body"><span class="system-text-message__body"><span class="">[StripChat Enhanced] Translation Error: <small><em>'+data.error.message+'</em></small></span></span></div></div></div>')
+
+      // close error
+      $('.model-chat-error').on('click', function() { $(this).remove() })
+    }
+  })
+  console.log(res)
+
+  return (res ? res : false)
+}
+
 
 /**
  * Custom Page: Hidden Cams
  */
 waitForKeyElements('body.se-page-my-hidden-cams #main .content_body', showHiddenCamsPage, false);
 function showHiddenCamsPage(el) {
-  let htmlTopSection = '<div class="top-section" ts="H" style="padding-left: 15px; padding-right: 16px;"><ul class="sub-nav genderTabs" ts="u" data-userscript-1761263927196-alreadyfound="true"><div ts="k" class="scanNext" data-paction="NextCam" style="height: 27px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; z-index: 1; top: 2px; text-align: right; float: right; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; display: none;"><a ts="m" href="#" class="tabActiveColor transparentBg" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; padding: 7px 3px 7px 5px; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; position: relative; background-color: transparent; right: 5px;"><span data-testid="scan-cams">SCAN CAMS</span></a><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden;"></div><a ts="m" href="#" data-testid="next-cam" class="nextCamBgColor tabBorder tabActiveColor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; line-height: normal; position: relative; border-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; padding: 6px 3px 6px 5px;">NEXT CAM (Ctrl+/)</a><div class="nextCamBgColor tabBorder tabActiveColor dropdown-anchor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" ts="h" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none; cursor: pointer; padding: 4px 6px; text-decoration: none; font-size: 10.008px; position: relative; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; text-align: center; user-select: none; top: 1px;">SCAN / NEXT</div></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-listener-count-click="1" href="https://chaturbate.com/" class="gender-tab" data-testid="top-section-tab-featured" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1">FEATURED</a></li><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 12px;"></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" href="https://chaturbate.com/female-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">WOMEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-men" data-listener-count-click="1" href="https://chaturbate.com/male-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">MEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-couples" data-listener-count-click="1" href="https://chaturbate.com/couple-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">COUPLES</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-trans" data-listener-count-click="1" href="https://chaturbate.com/trans-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">TRANS</a></li><div ts="d" class="chatAreaTabColor dropdown-anchor gender-tab" data-listener-count-click="1" data-listener-count-keydown="1" style="position: absolute; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 0px 10px; text-align: center; user-select: none; display: none; border-width: 1px; border-style: solid; border-radius: 4px 4px 0px 0px; height: 27px; line-height: 27px; margin-right: 2px; width: 41px;">. . .</div><li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"> <a data-paction="TopTab" data-testid="top-section-tab-women" class="gender-tab tabElement tabElementLink" href="#" style="display: inline-block;">+</a> <div class="se-sub-menu" style="display: none"> <a data-testid="profile-link" href="/my-hidden-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Hidden Cams</a> <a class="se-button-disabled" data-testid="profile-link" href="/banned-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Banned Cams</a></div></li></ul></div>'
+  let htmlTopSection = '<div class="top-section" ts="H" style="padding-left: 15px; padding-right: 16px;"><ul class="sub-nav genderTabs" ts="u" data-userscript-1761263927196-alreadyfound="true"><div ts="k" class="scanNext" data-paction="NextCam" style="height: 27px; position: relative; overflow: visible; -webkit-tap-highlight-color: transparent; z-index: 1; top: 2px; text-align: right; float: right; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; display: none;"><a ts="m" href="#" class="tabActiveColor transparentBg" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; padding: 7px 3px 7px 5px; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; position: relative; background-color: transparent; right: 5px;"><span data-testid="scan-cams">SCAN CAMS</span></a><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden;"></div><a ts="m" href="#" data-testid="next-cam" class="nextCamBgColor tabBorder tabActiveColor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" style="display: inline-block; text-decoration: none; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 10.008px; line-height: normal; position: relative; border-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; padding: 6px 3px 6px 5px;">NEXT CAM (Ctrl+/)</a><div class="nextCamBgColor tabBorder tabActiveColor dropdown-anchor" data-listener-count-mouseenter="1" data-listener-count-mouseleave="1" ts="h" data-listener-count-click="1" data-listener-count-keydown="1" style="display: none; cursor: pointer; padding: 4px 6px; text-decoration: none; font-size: 10.008px; position: relative; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-bottom-style: initial; border-left-style: solid; border-bottom-color: initial; border-radius: 4px 4px 0px 0px; text-align: center; user-select: none; top: 1px;">SCAN / NEXT</div></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-listener-count-click="1" href="https://chaturbate.com/" class="gender-tab" data-testid="top-section-tab-featured" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1">FEATURED</a></li><div ts="n" style="position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; float: right; height: 100%; visibility: hidden; width: 12px;"></div><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-women" data-listener-count-click="1" href="https://chaturbate.com/female-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">WOMEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-men" data-listener-count-click="1" href="https://chaturbate.com/male-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">MEN</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-couples" data-listener-count-click="1" href="https://chaturbate.com/couple-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">COUPLES</a></li><li class="gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0016px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"><a data-paction="TopTab" data-testid="top-section-tab-trans" data-listener-count-click="1" href="https://chaturbate.com/trans-cams/" class="gender-tab tabElement tabElementLink" data-listener-count-pointerenter="1" data-listener-count-pointerleave="1" style="display: inline-block;">TRANS</a></li><div ts="d" class="chatAreaTabColor dropdown-anchor gender-tab" data-listener-count-click="1" data-listener-count-keydown="1" style="position: absolute; overflow: hidden; -webkit-tap-highlight-color: transparent; cursor: pointer; padding: 0px 10px; text-align: center; user-select: none; display: none; border-width: 1px; border-style: solid; border-radius: 4px 4px 0px 0px; height: 27px; line-height: 27px; margin-right: 2px; width: 41px;">. . .</div><li class="se-custom-gender-tab gender-tab" ts="m" style="display: inline-block; position: relative; font: 13.0029px / 16px UbuntuMedium, Arial, Helvetica, sans-serif;"> <a data-paction="TopTab" data-testid="top-section-tab-women" class="gender-tab tabElement tabElementLink" href="#" style="display: inline-block;">+</a> <div class="se-sub-menu" style="display: none"> <a data-testid="profile-link" href="/my-hidden-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Hidden Cams</a> <a data-testid="profile-link" href="/banned-cams" style="text-decoration: none; display: block; font-size: 14px; padding: 5px 0px 5px 10px;">Banned Cams</a></div></li></ul></div>'
   let htmlViewHiddenCams = getResource('html/view-hidden-cams.html')
 
   // prepare page view
@@ -796,6 +925,7 @@ function addLangDropdownPrivateChats(el) {
  */
 waitForKeyElements('#chat-player', showTakeScreenshotButton2, false);
 function showTakeScreenshotButton2(el) {
+  $('.se-record-clip').removeClass('se-disabled') // "Record Clip" Button
   $('.se-take-screenshot').removeClass('se-disabled') // "Take Screenshot" Button
   $('.se-pip').removeClass('se-hidden') // "Picture in Picture" Button
 }
@@ -806,7 +936,7 @@ function showTakeScreenshotButton2(el) {
  */
 waitForKeyElements('body:not(.se-banned-room) #satisfactionScore', addTakeScreenshot);
 function addTakeScreenshot(el) {
-  $(el).after('<div ts="N" class="se-take-screenshot sendTipButton se-disabled" data-testid="take-screenshot-button" style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;"><span></span><span>SCREENSHOT</span></div>');
+  $(el).after('<div ts="N" class="se-take-screenshot sendTipButton se-disabled" data-testid="take-screenshot-button" style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;"><span></span><span>TAKE SCREENSHOT</span></div>');
 
   $('.se-take-screenshot').on('click', function(e) {
     e.preventDefault();
@@ -829,6 +959,117 @@ function addTakeScreenshot(el) {
     let t = ('0' + date.getHours()).slice(-2) + '-' + ('0' + date.getMinutes()).slice(-2) + '-' + ('0' + date.getSeconds()).slice(-2);
     return fname + '__' + d + '_' + t + ext;
   }
+}
+
+
+/**
+ * Additional Bio Info
+ */
+waitForKeyElements('.roomPage .BioContents table', addAdditionalBioInfo);
+function addAdditionalBioInfo(el) {
+  let username = $('.activeRoom').text().split("'")[0].toLowerCase()
+  let roomDossier = getRoomDossier(username)
+
+  if(roomDossier.online_for)
+    $(el).find('.bioContentText').prepend('<tr style="font-size: 14px; font-weight: normal; line-height: 15px; vertical-align: top; text-align: left;"><td class="label" style="padding-bottom: 9px; font-family: UbuntuMedium, Arial, Helvetica, sans-serif; height: 16px;"><span data-testid="bio-tab-real-name-label">Online For:</span></td><td class="contentText bioContentText" data-testid="bio-tab-real-name-value" style="font-size: 14px; line-height: 16px; font-family: UbuntuRegular, Arial, Helvetica, sans-serif;">'+roomDossier.online_for+'</td></tr>')
+}
+
+
+/**
+ * Record Clip
+ */
+waitForKeyElements('body:not(.se-banned-room) .se-take-screenshot', addRecordClip);
+function addRecordClip(el) {
+  $(el).after('<div ts="N" class="se-record-clip sendTipButton se-disabled" data-testid="record-clip-button" style="height: 15px; width: auto; position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; display: inline; font-family: UbuntuMedium, Helvetica, Arial, sans-serif; font-size: 12px; padding: 3px 8px 2px; top: -4px; float: right; border-radius: 3px; cursor: pointer; margin-right: 5px; line-height: 1.4;"><span></span><span>RECORD CLIP</span></div>');
+
+  // toggle record
+  $('.se-record-clip').on('click', function(e) {
+    e.preventDefault()
+    let vid = $(".videoPlayerDiv video")
+    let lengthInMS = 1000*60*10
+    let username = $('.activeRoom').text().split("'")[0].toLowerCase()
+    let stream = browserCaptureStream(vid[0])
+    let supportedMimeType = supportedCaptureMimeType()
+
+		// start
+    if(!$('body').hasClass('se-is-recording')) {
+      if(!stream) alert("not supported")
+      if(typeof MediaRecorder === 'undefined') alert("not supported")
+      if(!supportedMimeType) alert("not supported")
+
+      // ignore eventual player errors
+      vid[0].play().catch(() => { () => {} })
+
+      // cut audio track if stream is muted
+      // if(vid[0].muted) stream.getAudioTracks().forEach( t => stream.removeTrack( t ) )
+
+      // start recording
+      $('body').addClass('se-is-recording')
+      recordStream(stream, lengthInMS, supportedMimeType).then((recordedChunks) => {
+        let streamBlob = new Blob(recordedChunks, {
+          type: supportedMimeType[0]
+        })
+
+        // generate download link (invisible download)
+        let objectURL = URL.createObjectURL(streamBlob)
+        let link = document.createElement('a')
+        link.download = genFilename(username, '.'+supportedMimeType[1], new Date())
+        link.href = objectURL
+        link.click()
+
+
+        setTimeout(() => { if(objectURL) URL.revokeObjectURL(objectURL) }, 10000)
+      })
+		} 
+		// stop
+    else {
+      alert("stop recording")
+      $('body').removeClass('se-is-recording')
+      stream.getTracks().forEach((track) => track.stop());
+		}
+  })
+}
+function wait(delayInMS) {
+	return new Promise((resolve) => setTimeout(resolve, delayInMS));
+}
+function browserCaptureStream(el) {
+	if(el.captureStream) return el.captureStream()
+	if(el.mozCaptureStream) return el.mozCaptureStream()
+
+	return false;
+}
+function supportedCaptureMimeType() {
+	let mimeTypes = [
+    ['video/mp4', 'mp4'],
+    ['video/webm', 'webm']
+	]
+	for(let k in mimeTypes)
+		if(MediaRecorder.isTypeSupported(mimeTypes[k][0]))
+      return mimeTypes[k]
+
+  return false
+}
+function recordStream(stream, lengthInMS, mimeType) {
+  alert("recordStream")
+	let options = {
+		mimeType: mimeType[0],
+		videoBitsPerSecond: 6000000
+	};
+	let recorder = new MediaRecorder(stream, options);
+	let data = [];
+	recorder.ondataavailable = (e) => { data.push(e.data); }
+	recorder.start(250);
+
+	//gRecordingStream = stream; // TODO why save global, not neccessary?
+
+	let stopped = new Promise((resolve, reject) => {
+		recorder.onstop = (e) => { resolve(e.name); }
+		recorder.onerror = (e) => { reject(e.name); }
+	});
+	let recorded = wait(lengthInMS).then(() => {
+		if(recorder.state === "recording") recorder.stop()
+	});
+	return Promise.any([stopped, recorded]).then(() => data);
 }
 
 
@@ -1033,7 +1274,7 @@ function addLangDropdown(jNode) {
 
   // add own keypress event
   $('.se-custom-input').on('blur input', function(e) {
-    modelChatInput.text($(this).val()).trigger("blur").trigger("input").trigger("paste")
+    modelChatInput.text($(this).val()).trigger("blur").trigger("input").trigger("paste").trigger("keydown").trigger("keyup").trigger("touchdownstart")
   })
 
   $(jNode).closest('div').off().on('click', '.SendButton.chat', function() {
@@ -1430,6 +1671,18 @@ function lifecycleBodyStart(el) {
   // $('.list.endless_page_template').append('<li class="roomCard camBgColor se-roomcard" data-testid="room-card" ts="f"><a href="#" data-room-nav="true" data-room="username" class="room_thumbnail_container"><img width="180" height="101" src="https://jpeg.live.mmcdn.com/minifwap/lizeth_salazar.jpg?f=0.2622172719922623" data-testid="room-card-image" alt="lizeth_salazar" data-room-nav="true" data-wide-image="true" class="room_thumbnail"></a><div class="labelContainer"><div class="thumbnail_label" data-testid="thumbnail-label"></div></div><div class="details" ts="w"><div class="cardTitle title"><a href="/lizeth_salazar/" data-room="lizeth_salazar" data-room-nav="true" data-testid="room-card-username" data-listener-count-click="1">lizeth_salazar</a><div class="age_gender_container"><span class="age" data-testid="room-card-age">20</span><span class="camAltTextColor genderf" title="Female" data-testid="room-card-gender"></span><span class="thumbnail_flag" data-testid="room-card-thumbnail-flag"><div ts="FlagIconWrapper"><span data-testid="room-card-country" class="fi fi-co" title="Colombia"></span></div></span></div></div><ul class="subject camSubjectColor" title="fuck my pussy wet at goal @200 #bigboobs #latina #teen #lovense #cute [0 tokens remaining]" ts="y"><li>fuck my pussy wet at goal @200 <a href="https://chaturbate.com/followed-cams/?tag=bigboobs" class="camSubjectTagColor" data-listener-count-click="1">#bigboobs</a> <a href="https://chaturbate.com/followed-cams/?tag=latina" class="camSubjectTagColor" data-listener-count-click="1">#latina</a> <a href="https://chaturbate.com/followed-cams/?tag=teen" class="camSubjectTagColor" data-listener-count-click="1">#teen</a> <a href="https://chaturbate.com/followed-cams/?tag=lovense" class="camSubjectTagColor" data-listener-count-click="1">#lovense</a> <a href="https://chaturbate.com/followed-cams/?tag=cute" class="camSubjectTagColor" data-listener-count-click="1">#cute</a> [0 tokens remaining]</li></ul><ul class="sub-info camAltTextColor"><li class="location" data-testid="room-card-location" style="white-space: nowrap;">Colombia</li><li class="cams " style="white-space: nowrap;"><span class="time">3.3 hrs</span><span class="comma">, </span><span class="viewers">8 viewers</span></li><li class="se-open-overlay"><svg width="12" height="12" viewBox="0 0 0.225 0.225" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M.129.037a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0m0 .075a.017.017 0 1 1-.034 0 .017.017 0 0 1 .034 0M.112.204a.017.017 0 1 0 0-.034.017.017 0 0 0 0 .034" fill="currentColor"></path></svg></li></ul></div><div data-slug="lizeth_salazar" data-testid="follow-star" class="follow_star icon_following" title="Unfollow" ts="c"></div></li>')
 }
 
+
+
+/**
+ * CSS
+ */
+var path = chrome.runtime.getURL('css/_no-ads.css')
+$('head').append($('<link>').attr("rel", "stylesheet").attr("type", "text/css").attr("href", path))
+
+var path = chrome.runtime.getURL('css/_no-terms.css')
+$('head').append($('<link>').attr("rel", "stylesheet").attr("type", "text/css").attr("href", path))
+    
+
 /**
  * Global Functions
  */
@@ -1450,7 +1703,7 @@ function getResource(path) {
 }
 
 // Switch Toggle
-waitForKeyElements('#main.chat_room', addBodyShit);
+waitForKeyElements('#main', addBodyShit);
 function addBodyShit(el) {
 
   $(el).on('click', '.se-switcher', function(e) {
@@ -1513,7 +1766,7 @@ function populateLanguageDropdowns() {
 // get RoomDossier
 function getRoomDossier(modelUsername, errordiv) {
 
-  let res = $.getJSON('https://247camming-api.local.dev/api/chatvideocontext/'+modelUsername).fail(function(data) {
+  let res = $.getJSON('https://chaturbate.com/api/chatvideocontext/'+modelUsername).fail(function(data) {
     data = JSON.parse(data.responseText)
 
     // error handling
@@ -1536,4 +1789,55 @@ function remoteStorageGet(key, val) {
 }
 function remoteStorageSet(key, val) {
   
+}
+
+
+// is in viewport
+function isVisibleInViewport(element) {
+  	const elementStyle = window.getComputedStyle(element);
+	//Particular cases when the element is not visible at all
+	if (
+	elementStyle.height == '0px' ||
+	elementStyle.display == 'none' ||
+	elementStyle.opacity == '0' ||
+        elementStyle.visibility == 'hidden' ||
+  	elementStyle.clipPath == 'circle(0px at 50% 50%)' ||
+        elementStyle.transform == 'scale(0)' ||
+        element.hasAttribute('hidden')
+	) {
+		return false;
+	}
+
+    	const rect = element.getBoundingClientRect();
+  
+  	//Overlapping strict check
+  	const baseElementLeft = rect.left;
+	const baseElementTop = rect.top;
+  
+  	const elementFromStartingPoint = document.elementFromPoint(baseElementLeft,baseElementTop);
+  	
+    	if (elementFromStartingPoint != null && !element.isSameNode(elementFromStartingPoint)) {
+      		const elementZIndex = elementStyle.zIndex;
+      		const elementOverlappingZIndex = window.getComputedStyle(elementFromStartingPoint).zIndex;
+      		if (Number(elementZIndex) < Number(elementOverlappingZIndex)){
+        		return false;
+      		}
+		
+		if (elementZIndex === '' && elementOverlappingZIndex === '') {
+			/**
+        		If two positioned elements overlap without a z-index specified, the element 
+			positioned last in the HTML code will be shown on top 
+        		**/
+			if (element.compareDocumentPosition(elementFromStartingPoint) & Node.DOCUMENT_POSITION_FOLLOWING) {
+			  return false;
+			}
+		}
+    }
+		
+    return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
 }

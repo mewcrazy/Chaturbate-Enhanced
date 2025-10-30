@@ -111,6 +111,12 @@ button + .se-loader { display: none; }
 #FVChatTabContents .se-langpicker { top: 9px; }
 .model-chat-error { font-size: .85em; }
 
+/* play all thumbnails */
+.switch-preview-all { display: flex; padding-top: 9px; float: right; font-size: 0.8em; color: #68b5f0; float: left; font-family: "UbuntuRegular", Arial, Helvetica, sans-serif; margin-right: 10px; }
+.switch-preview-all .toggle__label { width: 30px; height: 14px; }
+.switch-preview-all .toggle__label:after { width: 13px; height: 12px; top: 1px; }
+.switch-preview-all .toggle__input:checked + .toggle__label::after { left: 17px; top: 1px; }
+
 /* Translate Private Messsages */
 .messenger-chat .language-search { max-width: 140px; }
 .messenger-chat .content-messages .message-base.m-bg-error { background-color: #ab262e; }
@@ -171,6 +177,10 @@ button + .se-loader { display: none; }
 .se-take-screenshot { margin-right: 5px; }
 .se-take-screenshot.se-disabled { filter: grayscale(100%); pointer-events: none; opacity: .7; }
 
+/* record clip */
+.se-record-clip { margin-right: 5px; }
+.se-record-clip.se-disabled { filter: grayscale(100%); pointer-events: none; opacity: .7; }
+
 /* minor fixes */
 #VideoPanel .sendTipButton { max-width: auto !important; }
 .followRecommendedContainer > div:first-child { display: flex; flex-direction: row-reverse; justify-content: space-between; }
@@ -229,6 +239,14 @@ button + .se-loader { display: none; }
 .se-dm-sound-toggle.se-sound-off svg { fill: rgba(255,255,255,.1) }
 .se-dm-sound-toggle.se-sound-off path { stroke: rgba(255,255,255,.1) }
 .dmWindowHeader > div:first-child { width: calc(100% - 88px) !important; }
+
+/* avatar info */
+.se-avatar-header { padding: 0 4px; }
+.se-avatar-header > span { cursor: default !important; font-family: "Ubuntu", Helvetica, Arial, sans-serif !important; }
+.se-avatar-header > span:hover { text-decoration: none !important; }
+.se-avg-24hrs.plus { color: green }
+.se-avg-24hrs.neutral { color: lightgray }
+.se-avg-24hrs.minus { color: red }
 
 /* page: hidden cams */
 .se-page-my-hidden-cams .advanced-search-button-container { position: relative; list-style-type: none; float: right; margin: 0px; padding: 0px; z-index: 2; }
