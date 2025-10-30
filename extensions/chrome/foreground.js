@@ -100,11 +100,16 @@ waitForKeyElements('.homepageFilterButton', addPlayAllThumbnails, false);
 function addPlayAllThumbnails(el) {
   
   // play all thumbnails
-  if(!localStorage.getItem('SE_previewAll'))
+  if(!localStorage.getItem('SE_previewAll')) {
     initPlayAllThumbnails()
+    $('.switch-dnd-mode .switcher').toggleClass("on")
+    $('.switch-dnd-mode input[type="checkbox"]').prop('checked', true)
+  }
 
+  // append toggle switch
   $(el).after('<li class="se-switcher switch-preview-all"><span>Preview All</span><div class="toggle"><input name="SE_previewAll" type="checkbox" id="mode-toggle" value="1" class="toggle__input"><label for="mode-toggle" class="toggle__label"></label></div></li>')
-  
+
+  // toggle switch event handler
   $('.switch-preview-all').on('click', function(e) {
     if(!$(this).find('input').prop('checked')) {
       initPlayAllThumbnails()
@@ -121,6 +126,7 @@ $(document).on('scroll', () => {
 })
 function initPlayAllThumbnails() {
 
+  // loop all rooms
   $('.roomCard.camBgColor').each((k, v) => {
     if(isVisibleInViewport($(v).find('.room_thumbnail')[0])) {
       v.dispatchEvent(new MouseEvent('mouseenter', { 'view': window, 'bubbles': true, 'cancelable': true }));
