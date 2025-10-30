@@ -103,7 +103,7 @@ function addPlayAllThumbnails(el) {
   $(el).after('<li class="se-switcher switch-preview-all"><span>Preview All</span><div class="toggle"><input name="SE_previewAll" type="checkbox" id="mode-toggle" value="1" class="toggle__input"><label for="mode-toggle" class="toggle__label"></label></div></li>')
 
   // play all thumbnails
-  if(!localStorage.getItem('SE_previewAll')) {
+  if(localStorage.getItem('SE_previewAll')) {
     initPlayAllThumbnails()
     $('.switch-preview-all .switcher').toggleClass("on")
     $('.switch-preview-all input[type="checkbox"]').prop('checked', true)
@@ -121,8 +121,7 @@ function addPlayAllThumbnails(el) {
 $(document).on('scroll', () => {
 
   // fire on scroll
-  if(!localStorage.getItem('SE_previewAll'))
-    initPlayAllThumbnails()
+  if(localStorage.getItem('SE_previewAll')) initPlayAllThumbnails()
 })
 function initPlayAllThumbnails() {
 
