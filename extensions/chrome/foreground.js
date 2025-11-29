@@ -244,7 +244,7 @@ function showHiddenCamsPage(el) {
   $(el).closest('#main').find('.content').empty().append(htmlViewHiddenCams)
 
   // view hidden cams
-  let hiddenCams = ["its_lily", "aalliyahh", "crystalnut"]
+  let hiddenCams = []
   //let hiddenCams = localStorage.getItem('SE_hiddenCams')
   $.each(hiddenCams, function(k, v) {
 
@@ -261,6 +261,8 @@ function showHiddenCamsPage(el) {
     tpl.find('img').attr('src', 'https://jpeg.live.mmcdn.com/minifwap/'+v+'.jpg')
     tpl.find('.cams .viewers').text((roomDossier.num_viewers ? roomDossier.num_viewers+' viewers' : "Offline"))
     if(roomDossier.following) { tpl.find('.follow_star').addClass('icon_following') } else { tpl.find('.follow_star').addClass('icon_not_following') }
+    if(roomDossier.room_status !== "public") tpl.find('.labelContainer').removeClass('se-hidden')
+    if(roomDossier.status === 403) tpl.find('.thumbnail_label').addClass('thumbnail_label_offline').text('BANNED')
     tpl.find('.subject span').text(roomDossier.room_title)
     if(roomDossier.broadcaster_gender)
       tpl.find('.age_gender_container .camAltTextColor').addClass('gender'+roomDossier.broadcaster_gender.toString()[0])
@@ -320,15 +322,17 @@ function addCustomGenderTabs(el) {
  */
 waitForKeyElements('.BaseRoomContents [data-testid="denied-notice"]', viewBannedRoom, false);
 function viewBannedRoom(el) {
+  let modelUsername = $('.activeRoom').text().toLowerCase().split('\'')[0];
+  let roomDossier = getRoomDossier(modelUsername)
+  console.log("roomDossier", roomDossier)
   $('body').addClass('se-banned-room')
 
-  // append
-  $(el).parent().append(getResource('html/view-banned-room.html'))
+  // fill room tabs & append
+  let bannedRoomView = getResource('html/view-banned-room.html')
+  $.each(roomDossier, function(k, v) { $(bannedRoomView).find('[data-fill="'+k+'"]').text(v) })
+  $(el).parent().append(bannedRoomView)
 
-  let bannedRooms = localStorage.getItem('bannedRooms')
-  $.each(bannedRooms, function(k, v) {
-    
-  })
+
 
   $('.se-follow-enhanced').on('click', function(e) {
     e.preventDefault;
@@ -686,18 +690,21 @@ function translateMainChat(el) {
     }
 
     
+    // TODO
     $(el).find('.roomNotice').slice(-50).each(function(index, item) {
+      let elAppend = $('[data-paction="CurrentShowBuyBox"]').closest('div')
+      let htmlInfoBox = '<div class="defaultColor" data-paction="CurrentShowBuyBox" data-testid="buy-box" style="height: 69px; box-sizing: border-box; font-size: 11px; overflow: visible; display: inline-block; vertical-align: top; margin: 0px;"><div style="box-sizing: border-box; vertical-align: top; display: inline-block; padding: 2px 10px;"><div class="currentBalance" style="display: block; height: 19px;"><span>You currently have: </span><span style="font-size: 15px; font-family: UbuntuBold, Helvetica, Arial, sans-serif;">0</span><span> tokens</span></div><div style="display: inline-block; vertical-align: top; width: 130px; text-overflow: ellipsis; overflow: visible; white-space: nowrap;"><a data-testid="promote-room-link" class="panelLink promoteRoomLink disabled" ts="A">Promote This Room<p style="position: absolute; display: none; opacity: 0; border-radius: 4px; background-color: rgba(0, 0, 0, 0.92); padding: 0px 16px; line-height: 22px; text-align: center; font-size: 14px; color: rgb(255, 255, 255); width: max-content; pointer-events: none; z-index: 2000; bottom: 48px;">You cannot promote this room.</p></a></div></div>'
+
       if($(this).text().indexOf('The show will start in') !== -1) {
-        $('#TheaterModePlayer').next('div').append('<h1>Yoooo the show is starting soon!</h1>')
+        elAppend.append('<h1>Yoooo the show is starting soon!</h1>')
       }
       else if($(this).text().indexOf('until the show starts') !== -1) {
         alert("2")
-        $('#TheaterModePlayer').next('div').append('<h1>Yoooo the show is starting soon!</h1>')
+        elAppend.append('<h1>Yoooo the show is starting soon!</h1>')
       }
       else if($(this).text().indexOf('Ticket Show sales are active') !== -1) {
         alert("3")
-        $('#TheaterModePlayer').next('div').append('<h1>Yoooo the show is starting soon!</h1>')
-        
+        elAppend.append('<h1>Yoooo the show is starting soon!</h1>')
       }
     })
 

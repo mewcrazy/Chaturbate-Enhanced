@@ -23,9 +23,9 @@
                 data-room="jully_lov" class="room_thumbnail_container"><img width="180" height="101" src="https://thumb.live.mmcdn.com/riw/jully_lov.jpg?1761349110" loading="lazy"
                     data-testid="room-card-image" alt="jully_lov" data-room-nav="true" data-wide-image="true"
                     class="room_thumbnail"></a>
-            <div class="labelContainer">
-                <div class="thumbnail_label" data-testid="thumbnail-label"></div>
-            </div>
+                <div class="labelContainer se-hidden">
+                    <div class="thumbnail_label" data-testid="thumbnail-label">OFFLINE</div>
+                </div>
             <div class="details" ts="w">
                 <div class="cardTitle title">
                     <a href="" data-room="jully_lov" data-room-nav="true" data-testid="room-card-username"></a>
@@ -42,8 +42,12 @@
                 <ul class="sub-info camAltTextColor">
                     <li class="location" data-testid="room-card-location" style="white-space: nowrap;">Shhhh please only
                         ask it in PMs or OF</li>
-                    <li class="cams " style="white-space: nowrap;"><span class="time">2.6 hrs</span><span
-                            class="comma">, </span><span class="viewers">1139 viewers</span></li>
+                    <li class="cams " style="white-space: nowrap;">
+                        <span class="time"></span><span class="comma"></span><span class="viewers"></span>
+                    </li>
+                    <li class="cams no-viewers se-offline se-hidden" style="white-space: nowrap;">
+                        <span class="time time-since">1 hour ago</span><span class="comma"></span><span class="viewers"></span>
+                    </li>
                 </ul>
             </div>
             <div data-slug="jully_lov" data-listener-count-click="1" data-testid="follow-star"
